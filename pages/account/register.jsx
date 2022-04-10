@@ -1,78 +1,100 @@
-import { useRouter } from 'next/router';
-import { useForm } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as Yup from 'yup';
+import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
 
-import { Link } from 'components';
-import { Layout } from 'components/account';
-import { userService, alertService } from 'services';
+import { Link } from "components";
+import { Layout } from "components/account";
+import { userService, alertService } from "services";
 
 export default Register;
 
 function Register() {
-    const router = useRouter();
+  const router = useRouter();
 
-    // form validation rules 
-    const validationSchema = Yup.object().shape({
-        firstName: Yup.string()
-            .required('First Name is required'),
-        lastName: Yup.string()
-            .required('Last Name is required'),
-        username: Yup.string()
-            .required('Username is required'),
-        password: Yup.string()
-            .required('Password is required')
-            .min(6, 'Password must be at least 6 characters')
-    });
-    const formOptions = { resolver: yupResolver(validationSchema) };
+  // form validation rules
+  const validationSchema = Yup.object().shape({
+    firstName: Yup.string().required("First Name is required"),
+    lastName: Yup.string().required("Last Name is required"),
+    username: Yup.string().required("Username is required"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(6, "Password must be at least 6 characters"),
+  });
+  const formOptions = { resolver: yupResolver(validationSchema) };
 
-    // get functions to build form with useForm() hook
-    const { register, handleSubmit, formState } = useForm(formOptions);
-    const { errors } = formState;
+  // get functions to build form with useForm() hook
+  const { register, handleSubmit, formState } = useForm(formOptions);
+  const { errors } = formState;
 
-    function onSubmit(user) {
-        return userService.register(user)
-            .then(() => {
-                alertService.success('Registration successful', { keepAfterRouteChange: true });
-                router.push('login');
-            })
-            .catch(alertService.error);
-    }
+  function onSubmit(user) {
+    return userService
+      .register(user)
+      .then(() => {
+        alertService.success("Registration successful", {
+          keepAfterRouteChange: true,
+        });
+        router.push("login");
+      })
+      .catch(alertService.error);
+  }
 
-    return (
-        <Layout>
-            <div className="card">
-                <h4 className="card-header">Register</h4>
-                <div className="card-body">
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <div className="form-group">
-                            <label>First Name</label>
-                            <input name="firstName" type="text" {...register('firstName')} className={`form-control ${errors.firstName ? 'is-invalid' : ''}`} />
-                            <div className="invalid-feedback">{errors.firstName?.message}</div>
-                        </div>
-                        <div className="form-group">
-                            <label>Last Name</label>
-                            <input name="lastName" type="text" {...register('lastName')} className={`form-control ${errors.lastName ? 'is-invalid' : ''}`} />
-                            <div className="invalid-feedback">{errors.lastName?.message}</div>
-                        </div>
-                        <div className="form-group">
-                            <label>Username</label>
-                            <input name="username" type="text" {...register('username')} className={`form-control ${errors.username ? 'is-invalid' : ''}`} />
-                            <div className="invalid-feedback">{errors.username?.message}</div>
-                        </div>
-                        <div className="form-group">
-                            <label>Password</label>
-                            <input name="password" type="password" {...register('password')} className={`form-control ${errors.password ? 'is-invalid' : ''}`} />
-                            <div className="invalid-feedback">{errors.password?.message}</div>
-                        </div>
-                        <button disabled={formState.isSubmitting} className="btn btn-primary">
-                            {formState.isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
-                            Register
-                        </button>
-                        <Link href="/account/login" className="btn btn-link">Cancel</Link>
-                    </form>
-                </div>
-            </div>
-        </Layout>
-    );
+  return (
+    <Layout>
+      <div className="flex flex-col h-screen justify-center mx-auto gap-8">
+        <h4 className="text-center text-2xl font-bold">Register</h4>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="flex flex-col gap-1">
+            <label className="font-bold">First Name</label>
+            <input
+              name="firstName"
+              type="text"
+              {...register("firstName")}
+              className={`border-2 rounded-md p-2 ${
+                errors.firstName ? "is-invalid" : ""
+              }`}
+            />
+            <div className="text-red-500">{errors.firstName?.message}</div>
+            <label className="font-bold">Last Name</label>
+            <input
+              name="lastName"
+              type="text"
+              {...register("lastName")}
+              className={`border-2 rounded-md p-2 ${
+                errors.lastName ? "is-invalid" : ""
+              }`}
+            />
+            <div className="text-red-500">{errors.lastName?.message}</div>
+            <label className="font-bold">Username</label>
+            <input
+              name="username"
+              type="text"
+              {...register("username")}
+              className={`border-2 rounded-md p-2 ${
+                errors.username ? "is-invalid" : ""
+              }`}
+            />
+            <div className="text-red-500">{errors.username?.message}</div>
+            <label className="font-bold">Password</label>
+            <input
+              name="password"
+              type="password"
+              {...register("password")}
+              className={`border-2 rounded-md p-2 ${
+                errors.password ? "is-invalid" : ""
+              }`}
+            />
+            <div className="text-red-500">{errors.password?.message}</div>
+          </div>
+          <button disabled={formState.isSubmitting} className="btn">
+            {formState.isSubmitting && <span className=""></span>}
+            Register
+          </button>
+          <Link href="/account/login" className="btn">
+            Cancel
+          </Link>
+        </form>
+      </div>
+    </Layout>
+  );
 }

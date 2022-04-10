@@ -1,1 +1,11 @@
-[]
+[
+    {
+        "firstName": "Sumit",
+        "lastName": "Kumar",
+        "username": "Dark_Blood",
+        "hash": "$2a$10$fcWKfPWkkjckeqpxZKseoeuGGGFzt.AFPhBJUJAAD5tlmnAOtrwSG",
+        "id": 1,
+        "dateCreated": "2022-04-10T16:44:20.349Z",
+        "dateUpdated": "2022-04-10T16:44:20.349Z"
+    }
+]
