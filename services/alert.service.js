@@ -22,8 +22,8 @@ const alertSubject = new Subject();
 const defaultId = 'default-alert';
 
 // enable subscribing to alerts observable
-function onAlert(id = defaultId) {
-    return alertSubject.asObservable().pipe(filter(x => x && x.id === id));
+function onAlert(ErNo = defaultId) {
+    return alertSubject.asObservable().pipe(filter(x => x && x.ErNo === ErNo));
 }
 
 // convenience methods
@@ -45,12 +45,12 @@ function warn(message, options) {
 
 // core alert method
 function alert(alert) {
-    alert.id = alert.id || defaultId;
+    alert.ErNo = alert.ErNo || defaultId;
     alert.autoClose = (alert.autoClose === undefined ? true : alert.autoClose);
     alertSubject.next(alert);
 }
 
 // clear alerts
-function clear(id = defaultId) {
-    alertSubject.next({ id });
+function clear(ErNo = defaultId) {
+    alertSubject.next({ ErNo });
 }

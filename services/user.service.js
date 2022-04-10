@@ -20,8 +20,8 @@ export const userService = {
     delete: _delete
 };
 
-function login(username, password) {
-    return fetchWrapper.post(`${baseUrl}/authenticate`, { username, password })
+function login(ErNo, password) {
+    return fetchWrapper.post(`${baseUrl}/authenticate`, { ErNo, password })
         .then(user => {
             // publish user to subscribers and store in local storage to stay logged in between page refreshes
             userSubject.next(user);
@@ -46,15 +46,15 @@ function getAll() {
     return fetchWrapper.get(baseUrl);
 }
 
-function getById(id) {
-    return fetchWrapper.get(`${baseUrl}/${id}`);
+function getById(ErNo) {
+    return fetchWrapper.get(`${baseUrl}/${ErNo}`);
 }
 
-function update(id, params) {
-    return fetchWrapper.put(`${baseUrl}/${id}`, params)
+function update(ErNo, params) {
+    return fetchWrapper.put(`${baseUrl}/${ErNo}`, params)
         .then(x => {
             // update stored user if the logged in user updated their own record
-            if (id === userSubject.value.id) {
+            if (ErNo === userSubject.value.ErNo) {
                 // update local storage
                 const user = { ...userSubject.value, ...params };
                 localStorage.setItem('user', JSON.stringify(user));
@@ -67,6 +67,6 @@ function update(id, params) {
 }
 
 // prefixed with underscored because delete is a reserved word in javascript
-function _delete(id) {
-    return fetchWrapper.delete(`${baseUrl}/${id}`);
+function _delete(ErNo) {
+    return fetchWrapper.delete(`${baseUrl}/${ErNo}`);
 }
