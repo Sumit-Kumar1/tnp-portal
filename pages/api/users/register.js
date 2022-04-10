@@ -11,8 +11,8 @@ function register(req, res) {
     const { password, ...user } = req.body;
 
     // validate
-    if (usersRepo.find(x => x.username === user.username))
-        throw `User with the username "${user.username}" already exists`;
+    if (usersRepo.find(x => x.ErNo === user.ErNo))
+        throw `User with the ErNo "${user.ErNo}" already exists`;
 
     // hash password
     user.hash = bcrypt.hashSync(password, 10);    

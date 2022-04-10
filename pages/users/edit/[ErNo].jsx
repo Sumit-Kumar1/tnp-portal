@@ -6,12 +6,12 @@ import { userService, alertService } from 'services';
 
 export default Edit;
 
-function Edit({ id }) {
+function Edit({ ErNo }) {
     const [user, setUser] = useState(null);
 
     useEffect(() => {
         // fetch user and set default form values if in edit mode
-        userService.getById(id)
+        userService.getById(ErNo)
             .then(x => setUser(x))
             .catch(alertService.error)
 
@@ -28,6 +28,6 @@ function Edit({ id }) {
 
 export async function getServerSideProps({ params }) {
     return {
-        props: { id: params.id }
+        props: { ErNo: params.ErNo }
     }
 }

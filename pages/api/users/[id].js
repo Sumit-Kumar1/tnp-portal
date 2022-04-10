@@ -10,7 +10,7 @@ export default apiHandler({
 });
 
 function getById(req, res) {
-    const user = usersRepo.getById(req.query.id);
+    const user = usersRepo.getById(req.query.ErNo);
 
     if (!user) throw 'User Not Found';
 
@@ -18,7 +18,7 @@ function getById(req, res) {
 }
 
 function update(req, res) {
-    const user = usersRepo.getById(req.query.id);
+    const user = usersRepo.getById(req.query.ErNo);
 
     if (!user) throw 'User Not Found';
 
@@ -26,19 +26,19 @@ function update(req, res) {
     const { password, ...params } = req.body;
 
     // validate
-    if (user.username !== params.username && usersRepo.find(x => x.username === params.username))
-        throw `User with the username "${params.username}" already exists`;
+    if (user.ErNo !== params.ErNo && usersRepo.find(x => x.ErNo === params.ErNo))
+        throw `User with the ErNo "${params.ErNo}" already exists`;
 
     // only update hashed password if entered
     if (password) {
         user.hash = bcrypt.hashSync(password, 10);
     }
 
-    usersRepo.update(req.query.id, params);
+    usersRepo.update(req.query.ErNo, params);
     return res.status(200).json({});
 }
 
 function _delete(req, res) {
-    usersRepo.delete(req.query.id);
+    usersRepo.delete(req.query.ErNo);
     return res.status(200).json({});
 }

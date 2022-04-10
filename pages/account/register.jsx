@@ -14,11 +14,18 @@ function Register() {
 
   // form validation rules
   const validationSchema = Yup.object().shape({
-    firstName: Yup.string().required("First Name is required"),
-    lastName: Yup.string().required("Last Name is required"),
-    username: Yup.string().required("Username is required"),
+    firstName: Yup.string().required("*Required"),
+    lastName: Yup.string().required("*Required"),
+    ErNo: Yup.number()
+      .test("len", "Must be exactly 6 characters", (val) => {
+        if (val) return val.toString().length === 6;
+      })
+      .required("Enrollment Number is required")
+      .typeError("you must specify a number")
+      .min(181000, "Enter valid Enrollment Number")
+      .max(219999, "enter valid Enrollment number"),
     password: Yup.string()
-      .required("Password is required")
+      .required("*Required")
       .min(6, "Password must be at least 6 characters"),
   });
   const formOptions = { resolver: yupResolver(validationSchema) };
@@ -65,16 +72,16 @@ function Register() {
               }`}
             />
             <div className="text-red-500">{errors.lastName?.message}</div>
-            <label className="font-bold">Username</label>
+            <label className="font-bold">Enrollment No</label>
             <input
-              name="username"
+              name="ErNo"
               type="text"
-              {...register("username")}
+              {...register("ErNo")}
               className={`border-2 rounded-md p-2 ${
-                errors.username ? "is-invalid" : ""
+                errors.ErNo ? "is-invalid" : ""
               }`}
             />
-            <div className="text-red-500">{errors.username?.message}</div>
+            <div className="text-red-500">{errors.ErNo?.message}</div>
             <label className="font-bold">Password</label>
             <input
               name="password"

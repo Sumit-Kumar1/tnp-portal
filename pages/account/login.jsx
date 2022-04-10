@@ -14,8 +14,15 @@ function Login() {
 
   // form validation rules
   const validationSchema = Yup.object().shape({
-    username: Yup.string().required("Username is required"),
-    password: Yup.string().required("Password is required"),
+    ErNo: Yup.number()
+      .test("len", "Must be exactly 6 characters", (val) => {
+        if (val) return val.toString().length === 6;
+      })
+      .required("Enrollment Number is required")
+      .typeError("you must specify a number")
+      .min(181000, "Enter valid Enrollment Number")
+      .max(219999, "enter valid Enrollment number"),
+    password: Yup.string().required("*Required"),
   });
   const formOptions = { resolver: yupResolver(validationSchema) };
 
@@ -23,9 +30,9 @@ function Login() {
   const { register, handleSubmit, formState } = useForm(formOptions);
   const { errors } = formState;
 
-  function onSubmit({ username, password }) {
+  function onSubmit({ ErNo, password }) {
     return userService
-      .login(username, password)
+      .login(ErNo, password)
       .then(() => {
         // get return url from query parameters or default to '/'
         const returnUrl = router.query.returnUrl || "/";
@@ -40,15 +47,16 @@ function Login() {
         <h4 className="text-center text-2xl font-bold">Login</h4>
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-1">
-            <label className="font-bold">Username</label>
+            <label className="font-bold">Enrollment Number</label>
             <input
-              name="username"
+              name="ErNo"
               type="text"
-              {...register("username")}
-              className={`border-2 rounded-md p-2
-                 ${errors.username ? "is-invalid" : ""}`}
+              {...register("ErNo")}
+              className={`border-2 rounded-md p-2 ${
+                errors.ErNo ? "is-invalid" : ""
+              }`}
             />
-            <div className="text-red-500">{errors.username?.message}</div>
+            <div className="text-red-500">{errors.ErNo?.message}</div>
             <label className="font-bold">Password</label>
             <input
               name="password"
