@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   serverRuntimeConfig: {
     secret:
-      "THIS IS USED TO SIGN AND VERIFY JWT TOKENS, REPLACE IT WITH YOUR OWN SECRET, IT CAN BE ANY STRING",
+      "7VGrPchKx0e2DXc5Q93XpwIMcbwb6tKEOz-qc4J6qfoA-tJhSJFQm0qsS8OncLb_Twb443Vvlo8Ea1qtFM-2Uc4ApIv71WqlXEOp9GkcD3Dlqg",
   },
   publicRuntimeConfig: {
     apiUrl:
