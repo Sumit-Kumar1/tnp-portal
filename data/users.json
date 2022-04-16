@@ -1,11 +1,26 @@
 [
     {
-        "firstName": "Sumit",
+        "ErNo": 191325,
         "lastName": "Kumar",
-        "username": "Dark_Blood",
-        "hash": "$2a$10$fcWKfPWkkjckeqpxZKseoeuGGGFzt.AFPhBJUJAAD5tlmnAOtrwSG",
-        "id": 1,
-        "dateCreated": "2022-04-10T16:44:20.349Z",
-        "dateUpdated": "2022-04-10T16:44:20.349Z"
+        "firstName": "Sumit",
+        "hash": "$2a$10$dqyZsxEk7KACEyBttSR2.uyt0WbIyFgykj4hkBv4NQz8b4Ppl03ui",
+        "dateCreated": "2022-04-10T18:38:28.558Z",
+        "dateUpdated": "2022-04-10T18:38:28.558Z"
+    },
+    {
+        "ErNo": 191323,
+        "lastName": "Kumar",
+        "firstName": "Sudeep",
+        "hash": "$2a$10$yaPKvrQ.hWC8N9eHdb0vG.FL2kqIw/JfZfC.sGmmosSFY3YQoA.Ci",
+        "dateCreated": "2022-04-10T18:39:14.822Z",
+        "dateUpdated": "2022-04-10T18:39:14.822Z"
+    },
+    {
+        "ErNo": 191328,
+        "lastName": "yadav",
+        "firstName": "yasharth",
+        "hash": "$2a$10$Exm1w261qK2tnN/apa3kwOSM70zQhEM01lxjONPKuXUjVBTkhC1aC",
+        "dateCreated": "2022-04-10T18:39:55.112Z",
+        "dateUpdated": "2022-04-10T18:39:55.112Z"
     }
 ]
