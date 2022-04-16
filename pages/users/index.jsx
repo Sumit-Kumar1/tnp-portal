@@ -29,60 +29,81 @@ function Index() {
 
   return (
     <Layout>
-      <h1>Users</h1>
-      <Link href="/users/add" className="btn btn-sm btn-success mb-2">
+      <Link
+        href="/users/add"
+        className="border-2 rounded-md px-2 py-2 block my-2 w-1/4 mx-auto text-center text-white bg-indigo-700 font-bold hover:bg-indigo-900"
+      >
         Add User
       </Link>
-      <table className="table-auto">
-        <thead>
-          <tr>
-            <th>Enrollment Number</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th style={{ width: "10%" }}></th>
-          </tr>
-        </thead>
-        <tbody>
-          {users &&
-            users.map((user) => (
-              <tr key={user.ErNo}>
-                <td>{user.ErNo}</td>
-                <td>{user.firstName}</td>
-                <td>{user.lastName}</td>
-                <td style={{ whiteSpace: "nowrap" }}>
-                  <Link href={`/users/edit/${user.ErNo}`} className="btn ">
-                    Edit
-                  </Link>
-                  <button
-                    onClick={() => deleteUser(user.ErNo)}
-                    className="btn-del"
-                    disabled={user.isDeleting}
-                  >
-                    {user.isDeleting ? (
-                      <span className="spinner-border spinner-border-sm"></span>
-                    ) : (
-                      <span>Delete</span>
-                    )}
-                  </button>
+      <div className="p-5">
+        <table className="min-w-full text-center">
+          <thead className="border-b bg-gray-800 text-white">
+            <tr>
+              <th className="text-sm font-medium text-white px-6 py-4">
+                Enrollment Number
+              </th>
+              <th className="text-sm font-medium text-white px-6 py-4">
+                First Name
+              </th>
+              <th className="text-sm font-medium text-white px-6 py-4">
+                Last Name
+              </th>
+              <th className="text-sm font-medium text-white px-6 py-4">#</th>
+            </tr>
+          </thead>
+          <tbody className=" ">
+            {users &&
+              users.map((user) => (
+                <tr key={user.ErNo} className="border-b hover:bg-gray-200">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    {user.ErNo}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    {user.firstName}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                    {user.lastName}
+                  </td>
+                  <td>
+                    <div className="flex flex-row gap-2">
+                      <Link
+                        href={`/users/edit/${user.ErNo}`}
+                        className="btn mx-auto my-1"
+                      >
+                        Edit
+                      </Link>
+                      <button
+                        onClick={() => deleteUser(user.ErNo)}
+                        className="btn-del my-1 mx-auto"
+                        disabled={user.isDeleting}
+                      >
+                        {user.isDeleting ? (
+                          <span className="spinner-border spinner-border-sm"></span>
+                        ) : (
+                          <span>Delete</span>
+                        )}
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            {!users && (
+              <tr>
+                <td colSpan="4">
+                  <Spinner />
                 </td>
               </tr>
-            ))}
-          {!users && (
-            <tr>
-              <td colSpan="4">
-                <Spinner />
-              </td>
-            </tr>
-          )}
-          {users && !users.length && (
-            <tr>
-              <td colSpan="4" className="text-center">
-                <div className="p-2">No Users To Display</div>
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+            )}
+            {users && !users.length && (
+              <tr>
+                <td colSpan="4" className="text-center">
+                  <div className="p-2">No Users To Display</div>
+                </td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
     </Layout>
   );
 }

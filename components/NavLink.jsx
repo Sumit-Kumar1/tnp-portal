@@ -19,7 +19,7 @@ function NavLink({ children, href, exact, ...props }) {
     const isActive = exact ? pathname === href : pathname.startsWith(href);
     
     if (isActive) {
-        props.className += ' active';
+        props.className += ' text-indigo-700';
     }
 
     return <Link href={href} {...props}>{children}</Link>;

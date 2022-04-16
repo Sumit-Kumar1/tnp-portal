@@ -21,7 +21,7 @@ function Nav() {
     if (!user) return null;
     
     return (
-        <nav className="">
+        <nav>
             <div className="flex flex-row gap-5 text-xl bg-black text-white p-5">
                 <NavLink href="/" exact className="">Home</NavLink>
                 <NavLink href="/users" className="">Users</NavLink>

@@ -17,7 +17,9 @@ export const userService = {
     getAll,
     getById,
     update,
+    getAccounts,
     delete: _delete
+   
 };
 
 function login(ErNo, password) {
@@ -31,6 +33,9 @@ function login(ErNo, password) {
         });
 }
 
+function getAccounts(ErNo){
+        return fetchWrapper.post(`${baseUrl}/${ErNo}`);
+}
 function logout() {
     // remove user from local storage, publish null to user subscribers and redirect to login page
     localStorage.removeItem('user');
