@@ -1,6 +1,4 @@
 import { userService } from "services";
-import { Link } from "components";
-import DashBoard from "components/dashboard";
 
 export default Home;
 
@@ -11,14 +9,7 @@ function Home() {
         <h1 className="text-xl font-bold">
           Hi {userService.userValue?.firstName}!
         </h1>
-        <p>
-          <Link
-            href="/users"
-            className="border-2 border-blue-600 bg-indigo-500 rounded px-3 py-2 inline-block text-white hover:bg-indigo-700"
-          >
-            Manage Users
-          </Link>
-        </p>
+        <p></p>
       </div>
     </div>
   );

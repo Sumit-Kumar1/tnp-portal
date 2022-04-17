@@ -35,10 +35,10 @@ function Login() {
       .then(() => {
         // get return url from query parameters or default to '/'
         if (userService.userValue.role == "admin") {
-          const returnUrl = router.query.returnUrl || "/admin";
+          const returnUrl = "/admin";
           router.push(returnUrl);
         } else {
-          const returnUrl = router.query.returnUrl || "/student";
+          const returnUrl = "/student";
           router.push(returnUrl);
         }
       })
