@@ -11,11 +11,7 @@
   "dependencies": {
     "@hookform/resolvers": "^2.8.8",
     "bcryptjs": "^2.4.3",
-<<<<<<< HEAD
     "express-jwt": "^6.1.1",
-=======
-    "express-jwt": "^6.0.0",
->>>>>>> parent of bde5b2e (installed jshint and created frontend pages for student and groups)
     "jsonwebtoken": "^8.5.1",
     "next": "12.1.4",
     "prop-types": "^15.8.1",
