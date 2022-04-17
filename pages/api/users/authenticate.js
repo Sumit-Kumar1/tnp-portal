@@ -27,6 +27,7 @@ function authenticate(req, res) {
         ErNo: user.ErNo,
         firstName: user.firstName,
         lastName: user.lastName,
+        role: user.role,
         token
     });
 }

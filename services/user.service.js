@@ -3,6 +3,7 @@ import getConfig from 'next/config';
 import Router from 'next/router';
 
 import { fetchWrapper } from 'helpers';
+import { string } from 'prop-types';
 
 const { publicRuntimeConfig } = getConfig();
 const baseUrl = `${publicRuntimeConfig.apiUrl}/users`;
@@ -44,7 +45,13 @@ function logout() {
 }
 
 function register(user) {
+    if(user.ErNo == 735560){
+        user.role = "admin"
+    }else{
+        user.role="student"
+    }
     return fetchWrapper.post(`${baseUrl}/register`, user);
+    
 }
 
 function getAll() {

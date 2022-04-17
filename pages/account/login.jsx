@@ -20,8 +20,7 @@ function Login() {
       })
       .required("Enrollment Number is required")
       .typeError("you must specify a number")
-      .min(181000, "Enter valid Enrollment Number")
-      .max(219999, "enter valid Enrollment number"),
+      .min(181000, "Enter valid Enrollment Number"),
     password: Yup.string().required("*Required"),
   });
   const formOptions = { resolver: yupResolver(validationSchema) };
@@ -35,8 +34,13 @@ function Login() {
       .login(ErNo, password)
       .then(() => {
         // get return url from query parameters or default to '/'
-        const returnUrl = router.query.returnUrl || "/";
-        router.push(returnUrl);
+        if (userService.userValue.role == "admin") {
+          const returnUrl = router.query.returnUrl || "/admin";
+          router.push(returnUrl);
+        } else {
+          const returnUrl = router.query.returnUrl || "/student";
+          router.push(returnUrl);
+        }
       })
       .catch(alertService.error);
   }

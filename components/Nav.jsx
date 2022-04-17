@@ -26,9 +26,12 @@ function Nav() {
         <NavLink href="/" exact className="">
           Home
         </NavLink>
-        <NavLink href="/users" className="">
-          Users
-        </NavLink>
+
+        {userService.userValue.role == "admin" && (
+          <NavLink href="/users" className="">
+            Users
+          </NavLink>
+        )}
         <NavLink href="/notification" className="">
           notifications
         </NavLink>

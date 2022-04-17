@@ -22,8 +22,7 @@ function Register() {
       })
       .required("Enrollment Number is required")
       .typeError("you must specify a number")
-      .min(181000, "Enter valid Enrollment Number")
-      .max(219999, "enter valid Enrollment number"),
+      .min(181000, "Enter valid Enrollment Number"),
     password: Yup.string()
       .required("*Required")
       .min(6, "Password must be at least 6 characters"),

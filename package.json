@@ -12,7 +12,6 @@
     "@hookform/resolvers": "^2.8.8",
     "bcryptjs": "^2.4.3",
     "express-jwt": "^6.1.1",
-    "jshint": "^2.13.4",
     "jsonwebtoken": "^8.5.1",
     "next": "12.1.4",
     "prop-types": "^15.8.1",

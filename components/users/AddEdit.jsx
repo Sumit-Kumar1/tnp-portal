@@ -66,75 +66,77 @@ function AddEdit(props) {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div className="flex flex-col h-full justify-center mx-auto gap-2">
-        <label className="font-bold">First Name</label>
-        <input
-          name="firstName"
-          type="text"
-          {...register("firstName")}
-          className={`border-2 rounded-md p-2 ${
-            errors.firstName ? "is-invalid" : ""
-          }`}
-        />
-        <div className="">{errors.firstName?.message}</div>
-        <label className="font-bold">Last Name</label>
-        <input
-          name="lastName"
-          type="text"
-          {...register("lastName")}
-          className={`border-2 rounded-md p-2 ${
-            errors.lastName ? "is-invalid" : ""
-          }`}
-        />
-        <div className="">{errors.lastName?.message}</div>
-        <label className="font-bold">Enrollment Number</label>
-        <input
-          name="ErNo"
-          type="text"
-          {...register("ErNo")}
-          className={`border-2 rounded-md p-2 ${
-            errors.ErNo ? "is-invalid" : ""
-          }`}
-        />
-        <div className="">{errors.email?.message}</div>
-        <label className="font-bold">
-          Password
-          {!isAddMode && (
-            <em className="ml-1">(Leave blank to keep the same password)</em>
-          )}
-        </label>
-        <input
-          name="password"
-          type="password"
-          {...register("password")}
-          className={`border-2 rounded-md p-2 ${
-            errors.password ? "is-invalid" : ""
-          }`}
-        />
-        <div className="">{errors.password?.message}</div>
-        <button
-          type="submit"
-          disabled={formState.isSubmitting}
-          className="btn btn-primary mr-2"
-        >
-          {formState.isSubmitting && (
-            <span className="spinner-border spinner-border-sm mr-1"></span>
-          )}
-          Save
-        </button>
-        <button
-          onClick={() => reset(formOptions.defaultValues)}
-          type="button"
-          disabled={formState.isSubmitting}
-          className="btn btn-secondary"
-        >
-          Reset
-        </button>
-        <Link href="/users" className="btn btn-link">
-          Cancel
-        </Link>
-      </div>
-    </form>
+    <div className ="h-full w-1/2 md:w-1/3 mx-auto">
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <div className="flex flex-col h-full justify-center mx-auto gap-2">
+          <label className="font-bold">First Name</label>
+          <input
+            name="firstName"
+            type="text"
+            {...register("firstName")}
+            className={`border-2 rounded-md p-2 ${
+              errors.firstName ? "is-invalid" : ""
+            }`}
+          />
+          <div className="">{errors.firstName?.message}</div>
+          <label className="font-bold">Last Name</label>
+          <input
+            name="lastName"
+            type="text"
+            {...register("lastName")}
+            className={`border-2 rounded-md p-2 ${
+              errors.lastName ? "is-invalid" : ""
+            }`}
+          />
+          <div className="">{errors.lastName?.message}</div>
+          <label className="font-bold">Enrollment Number</label>
+          <input
+            name="ErNo"
+            type="text"
+            {...register("ErNo")}
+            className={`border-2 rounded-md p-2 ${
+              errors.ErNo ? "is-invalid" : ""
+            }`}
+          />
+          <div className="">{errors.email?.message}</div>
+          <label className="font-bold">
+            Password
+            {!isAddMode && (
+              <em className="ml-1">(Leave blank to keep the same password)</em>
+            )}
+          </label>
+          <input
+            name="password"
+            type="password"
+            {...register("password")}
+            className={`border-2 rounded-md p-2 ${
+              errors.password ? "is-invalid" : ""
+            }`}
+          />
+          <div className="">{errors.password?.message}</div>
+          <button
+            type="submit"
+            disabled={formState.isSubmitting}
+            className="btn btn-primary mr-2"
+          >
+            {formState.isSubmitting && (
+              <span className="spinner-border spinner-border-sm mr-1"></span>
+            )}
+            Save
+          </button>
+          <button
+            onClick={() => reset(formOptions.defaultValues)}
+            type="button"
+            disabled={formState.isSubmitting}
+            className="btn btn-secondary"
+          >
+            Reset
+          </button>
+          <Link href="/users" className="btn btn-link">
+            Cancel
+          </Link>
+        </div>
+      </form>
+    </div>
   );
 }

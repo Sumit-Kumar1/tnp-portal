@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-
 import { userService } from 'services';
 
 export { Layout };
@@ -11,9 +10,12 @@ function Layout({ children }) {
     useEffect(() => {
         // redirect to home if already logged in
         if (userService.userValue) {
-            router.push('/');
+            if(userService.userValue.role =="Admin"){
+                router.push('/admin');
+            }else{
+                router.push('/student');
+            }
         }
-
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
