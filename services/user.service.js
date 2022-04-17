@@ -29,7 +29,6 @@ function login(ErNo, password) {
             // publish user to subscribers and store in local storage to stay logged in between page refreshes
             userSubject.next(user);
             localStorage.setItem('user', JSON.stringify(user));
-
             return user;
         });
 }

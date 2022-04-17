@@ -1,29 +1,3 @@
 [
-    {
-        "ErNo": 735560,
-        "lastName": "1",
-        "firstName": "test",
-        "role": "admin",
-        "hash": "$2a$10$au36YNIJsSdt8ihblikwE.7yodVGYVbXpxndPgn.vqip5y5TkCUVi",
-        "dateCreated": "2022-04-17T07:32:56.021Z",
-        "dateUpdated": "2022-04-17T07:32:56.021Z"
-    },
-    {
-        "ErNo": 191323,
-        "lastName": "1",
-        "firstName": "Sudeep",
-        "role": "student",
-        "hash": "$2a$10$En9HrOUBOBLWAo5qE5ZJfeaBmV/c/9rq2/o6OBP0V7OuAb0zwATvy",
-        "dateCreated": "2022-04-17T07:36:00.811Z",
-        "dateUpdated": "2022-04-17T07:36:00.811Z"
-    },
-    {
-        "ErNo": 191325,
-        "lastName": "1",
-        "firstName": "Sumit",
-        "role": "student",
-        "hash": "$2a$10$35fpuvLhCHvgDItdwbXAh.qGkyq.kjUSMRy9HTLrxIj9WPHuyS/JC",
-        "dateCreated": "2022-04-17T07:39:30.642Z",
-        "dateUpdated": "2022-04-17T07:39:30.642Z"
-    }
+    
 ]

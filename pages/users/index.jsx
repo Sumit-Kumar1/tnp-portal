@@ -32,7 +32,7 @@ function Index() {
     <Layout>
       <Link
         href="/users/add"
-        className="border-2 rounded-md px-2 py-2 block mt-3 w-1/4 mx-auto text-center text-white bg-indigo-700 font-bold hover:bg-indigo-900"
+        className="border-2 rounded-md px-2 py-2 block my-2 w-1/4 mx-auto text-center text-white bg-indigo-700 font-bold hover:bg-indigo-900"
       >
         Add User
       </Link>

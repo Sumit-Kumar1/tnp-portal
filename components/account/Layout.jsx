@@ -10,7 +10,7 @@ function Layout({ children }) {
     useEffect(() => {
         // redirect to home if already logged in
         if (userService.userValue) {
-            if(userService.userValue.role =="Admin"){
+            if(userService.userValue.role =="admin"){
                 router.push('/admin');
             }else{
                 router.push('/student');
