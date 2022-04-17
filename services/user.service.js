@@ -3,7 +3,6 @@ import getConfig from 'next/config';
 import Router from 'next/router';
 
 import { fetchWrapper } from 'helpers';
-import { string } from 'prop-types';
 
 const { publicRuntimeConfig } = getConfig();
 const baseUrl = `${publicRuntimeConfig.apiUrl}/users`;
@@ -69,7 +68,6 @@ function update(ErNo, params) {
                 // update local storage
                 const user = { ...userSubject.value, ...params };
                 localStorage.setItem('user', JSON.stringify(user));
-
                 // publish updated user to subscribers
                 userSubject.next(user);
             }
