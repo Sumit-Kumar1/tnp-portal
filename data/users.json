@@ -1,20 +1,43 @@
 [
     {
         "ErNo": 191325,
-        "lastName": "asdf",
+        "lastName": "A",
+        "firstName": "test1",
+        "role": "student",
+        "accounts": [
+            "abcd",
+            "",
+            "",
+            ""
+        ],
+        "hash": "$2a$10$.tixvXlUZXs/Z/y1s0l/oO/sRcxPNiXpyVpaqiRxeqcU4wrFo7ZnK",
+        "dateCreated": "2022-04-17T14:14:26.415Z",
+        "dateUpdated": "2022-04-17T16:23:27.806Z",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE5MTMyNSwiaWF0IjoxNjUwMjExMjM0LCJleHAiOjE2NTA4MTYwMzR9.g5aWYyCLhvFVEEy_PpfrZqIG2MR1sTJups0V2iiPgso"
+    },
+    {
+        "ErNo": 191323,
+        "lastName": "-",
         "firstName": "Sudeep",
         "role": "student",
-        "hash": "$2a$10$L55VBzbvjjLpl7nMxAtRw.kwGgmd3Ppmq/X2LxKS8ogstKWqbSpcO",
-        "dateCreated": "2022-04-17T09:19:55.897Z",
-        "dateUpdated": "2022-04-17T09:19:55.897Z"
+        "accounts": [
+            "abcsad",
+            "abc",
+            "ac",
+            "anc"
+        ],
+        "hash": "$2a$10$2rg6XYwd5.2psTqW9DlB/OVrhyrK/WI82xRbqet.uLUe/4gUZ8kxy",
+        "dateCreated": "2022-04-18T06:27:40.700Z",
+        "dateUpdated": "2022-04-18T06:38:34.284Z",
+        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjE5MTMyMywiaWF0IjoxNjUwMjYzODI5LCJleHAiOjE2NTA4Njg2Mjl9.V60FPDVMqW-S-44MtAof2uQRjESqM0tjmHan-vRaAeQ"
     },
     {
         "ErNo": 735560,
-        "lastName": "1",
-        "firstName": "test",
+        "lastName": "Kumar",
+        "firstName": "Sumit",
         "role": "admin",
-        "hash": "$2a$10$SBwEFndZgadPcbG.IrMndevNaH0Xm/O0v2lt0L97uRDZlMvmKIlY.",
-        "dateCreated": "2022-04-17T09:26:07.259Z",
-        "dateUpdated": "2022-04-17T09:26:07.259Z"
+        "hash": "$2a$10$F.3k8o1WwjYCUbxalrI0N.IQwUwzQotjAfNOvW0pE8n0TUV.93BR.",
+        "dateCreated": "2022-04-18T06:31:32.855Z",
+        "dateUpdated": "2022-04-18T06:31:32.855Z"
     }
 ]

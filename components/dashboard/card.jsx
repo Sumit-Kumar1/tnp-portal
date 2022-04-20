@@ -1,14 +1,35 @@
 import Image from "next/image";
-import leetCodeImage from "../../public/leetB.svg";
-function Card(props){
-    return (
-        <div className="border-2 p-3 rounded-lg w-full text-center border-green-500">
-            <Image src={leetCodeImage} alt="LeetCode-image" objectFit="cover"></Image>
-            <h1>{props.plat}</h1>
-            <h2>{props.userName}</h2>
-            <p>Problems Solved: {props.solved}</p>
-        </div>
-    );
+import leetCode from "../../public/leetB.svg";
+import codechef from "../../public/Codecheflogo.svg.png";
+import interviewBit from "../../public/interviewBit.png";
+import hackkerank from "../../public/hackerrank.svg";
+
+function Card(props) {
+  const plateform =
+    props.plat === "leetCode"
+      ? leetCode
+      : props.plat === "codechef"
+      ? codechef
+      : props.plat === "interviewBit"
+      ? interviewBit
+      : hackkerank;
+  return (
+    <div className="flex flex-col border border-indigo-500 rounded-xl p-3 text-center">
+      <Image
+        src={plateform}
+        alt={`${props.plat} image`}
+        layout="responsive"
+        objectFit="cover"
+        height={100}
+        width={100}
+      ></Image>{" "}
+      <div>
+        <h1 className="font-bold text-xl py-2">{props.plat}</h1>
+        <h2>{props.userName}</h2>
+        <p>Problems Solved: {props.solved}</p>
+      </div>
+    </div>
+  );
 }
 
 export default Card;

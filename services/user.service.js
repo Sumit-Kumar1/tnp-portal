@@ -47,6 +47,7 @@ function register(user) {
         user.role = "admin"
     }else{
         user.role="student"
+        user.accounts=[]
     }
     return fetchWrapper.post(`${baseUrl}/register`, user);
     
