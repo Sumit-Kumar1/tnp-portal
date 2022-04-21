@@ -22,6 +22,8 @@ function FormData() {
     }
     userService.update(userService.userValue?.ErNo, { accounts });
     alertService.info("Accounts added successfully.");
+    alertService.info("Please login again");
+    router.reload();
   }
   return (
     <form
