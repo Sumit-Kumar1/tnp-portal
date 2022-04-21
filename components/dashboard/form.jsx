@@ -1,4 +1,4 @@
-import { userService, alertService } from "services";
+import { alertService, userService } from "services";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 
@@ -20,17 +20,9 @@ function FormData() {
     for (const i = 0; i < 4; ++i) {
       accounts.push(e.target[i].value);
     }
-    user.accounts = accounts;
-    console.log(user);
-    return userService
-      .update(user.ErNo, user)
-      .then(() => {
-        alertService.success("User updated", { keepAfterRouteChange: true });
-        router.push("/");
-      })
-      .catch(alertService.error);
+    userService.update(userService.userValue?.ErNo, { accounts });
+    alertService.info("Accounts added successfully.");
   }
-
   return (
     <form
       onSubmit={onSubmit}

@@ -6,11 +6,11 @@ import hackkerank from "../../public/hackerrank.svg";
 
 function Card(props) {
   const plateform =
-    props.plat === "leetCode"
+    props.plat === "LeetCode"
       ? leetCode
-      : props.plat === "codechef"
+      : props.plat === "CodeChef"
       ? codechef
-      : props.plat === "interviewBit"
+      : props.plat === "InterviewBit"
       ? interviewBit
       : hackkerank;
   return (

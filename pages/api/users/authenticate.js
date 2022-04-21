@@ -28,6 +28,7 @@ function authenticate(req, res) {
         firstName: user.firstName,
         lastName: user.lastName,
         role: user.role,
+        accounts : user.accounts,
         token
     });
 }
