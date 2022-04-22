@@ -8,5 +8,5 @@ export const LeetCodeData = (userName) => {
   }
   const url = urls + userName;
   const { data, error } = useSWR(url, fetcher);
-  return { posts, error };
+  return { data, error };
 };
