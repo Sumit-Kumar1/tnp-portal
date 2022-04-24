@@ -16,7 +16,7 @@ function FormData() {
 
   function onSubmit(e) {
     e.preventDefault();
-    let accounts = [];
+    let accounts = {};
     for (const i = 0; i < 4; ++i) {
       accounts.push(e.target[i].value);
     }
@@ -32,11 +32,11 @@ function FormData() {
     >
       <label>Enter LeetCode userName</label>
       <input type="text" className="border-2 m-2 px-3"></input>
-      <label>Enter interviewBit userName</label>
+      <label>Enter InterviewBit userName</label>
       <input type="text" className="border-2 m-2 px-3"></input>
-      <label>Enter Codechef userName</label>
+      <label>Enter CodeForces userName</label>
       <input type="text" className="border-2 m-2 px-3"></input>
-      <label>Enter HackerRank userName</label>
+      <label>Enter SPOJ userName</label>
       <input type="text" className="border-2 m-2 px-3"></input>
       <button type="submit" className="btn">
         submit
