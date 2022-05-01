@@ -9,7 +9,6 @@ function Home() {
         <h1 className="text-xl font-bold">
           Hi {userService.userValue?.firstName}!
         </h1>
-        <p></p>
       </div>
     </div>
   );

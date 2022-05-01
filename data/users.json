@@ -1,26 +1,26 @@
 [
     {
-        "ErNo": 191325,
-        "lastName": "kumar",
-        "firstName": "sumit",
+        "ErNo": 735560,
+        "lastName": "Test",
+        "firstName": "Admin",
+        "role": "admin",
+        "hash": "$2a$10$KvqtdpmCPXpKkZs6HEiQBeES.mbCHTt.2lWS0XezCs7M3pJLXW4JG",
+        "dateCreated": "2022-04-25T05:21:20.472Z",
+        "dateUpdated": "2022-04-25T05:21:20.472Z"
+    },
+    {
+        "ErNo": 191324,
+        "lastName": "acd",
+        "firstName": "abcde",
         "role": "student",
         "accounts": [
-            "vivek9076",
+            "abhijeet_ar",
             "abhijeet_ar",
             "abhijeet_ar",
             "abhijeet_ar"
         ],
-        "hash": "$2a$10$wh1/RamghhvWU59oAnJEj.X9ftbu59uD.mk7Wh0tOz3BrmW9VKwtq",
-        "dateCreated": "2022-04-21T17:02:56.112Z",
-        "dateUpdated": "2022-04-21T18:12:42.329Z"
-    },
-    {
-        "ErNo": 735560,
-        "lastName": "dasag",
-        "firstName": "saaf",
-        "role": "admin",
-        "hash": "$2a$10$aMPJXrw6W//xkuC8HyZNf.BM4U1chfqjJqV2uQJAWo5MFSWv.y.MW",
-        "dateCreated": "2022-04-22T07:22:06.948Z",
-        "dateUpdated": "2022-04-22T07:22:06.948Z"
+        "hash": "$2a$10$uRFEMCYhe9aLuEHxw/.gFOPn/mFDbsag2BYYo91mAxO63VfMC7tn.",
+        "dateCreated": "2022-04-25T05:26:38.832Z",
+        "dateUpdated": "2022-04-25T05:27:21.510Z"
     }
 ]

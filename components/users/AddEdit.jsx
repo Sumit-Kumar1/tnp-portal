@@ -29,6 +29,7 @@ function AddEdit(props) {
       .transform((x) => (x === "" ? undefined : x))
       .concat(isAddMode ? Yup.string().required("Password is required") : null)
       .min(6, "Password must be at least 6 characters"),
+    role: Yup.string().required("*Required"),
   });
   const formOptions = { resolver: yupResolver(validationSchema) };
 
@@ -50,7 +51,7 @@ function AddEdit(props) {
       .register(data)
       .then(() => {
         alertService.success("User added", { keepAfterRouteChange: true });
-        router.push(".");
+        router.push("..");
       })
       .catch(alertService.error);
   }
@@ -66,9 +67,9 @@ function AddEdit(props) {
   }
 
   return (
-    <div className ="h-full w-1/2 md:w-1/3 mx-auto">
+    <div className ="w-1/2 h-full mx-auto md:w-1/3">
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="flex flex-col h-full justify-center mx-auto gap-2">
+        <div className="flex flex-col justify-center h-full gap-2 mx-auto">
           <label className="font-bold">First Name</label>
           <input
             name="firstName"
@@ -114,13 +115,27 @@ function AddEdit(props) {
             }`}
           />
           <div className="">{errors.password?.message}</div>
+          <label className="font-bold">
+            Role
+            {!isAddMode && (
+              <em className="ml-1">(Leave blank to keep the same password)</em>
+            )}
+          </label>
+          <input
+            name="password"
+            type="password"
+            {...register("password")}
+            className={`border-2 rounded-md p-2 ${
+              errors.password ? "is-invalid" : ""
+            }`}
+          />
           <button
             type="submit"
             disabled={formState.isSubmitting}
-            className="btn btn-primary mr-2"
+            className="mr-2 btn btn-primary"
           >
             {formState.isSubmitting && (
-              <span className="spinner-border spinner-border-sm mr-1"></span>
+              <span className="mr-1 spinner-border spinner-border-sm"></span>
             )}
             Save
           </button>

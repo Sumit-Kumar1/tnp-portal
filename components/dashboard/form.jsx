@@ -16,7 +16,7 @@ function FormData() {
 
   function onSubmit(e) {
     e.preventDefault();
-    let accounts = {};
+    let accounts = [];
     for (const i = 0; i < 4; ++i) {
       accounts.push(e.target[i].value);
     }

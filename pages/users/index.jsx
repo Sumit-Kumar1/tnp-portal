@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from "react";
 
 import { Link, Spinner } from "components";
@@ -32,50 +31,50 @@ function Index() {
     <Layout>
       <Link
         href="/users/add"
-        className="border-2 rounded-md px-2 py-2 block my-2 w-1/4 mx-auto text-center text-white bg-indigo-700 font-bold hover:bg-indigo-900"
+        className="block w-1/4 px-2 py-2 mx-auto my-2 font-bold text-center text-white bg-indigo-700 border-2 rounded-md hover:bg-indigo-900"
       >
         Add User
       </Link>
       <div className="p-5">
         <table className="min-w-full text-center">
-          <thead className="border-b bg-gray-800 text-white">
+          <thead className="text-white bg-gray-800 border-b">
             <tr>
-              <th className="text-sm font-medium text-white px-6 py-4">
+              <th className="px-6 py-4 text-sm font-medium text-white">
                 Enrollment Number
               </th>
-              <th className="text-sm font-medium text-white px-6 py-4">
+              <th className="px-6 py-4 text-sm font-medium text-white">
                 First Name
               </th>
-              <th className="text-sm font-medium text-white px-6 py-4">
+              <th className="px-6 py-4 text-sm font-medium text-white">
                 Last Name
               </th>
-              <th className="text-sm font-medium text-white px-6 py-4">#</th>
+              <th className="px-6 py-4 text-sm font-medium text-white">#</th>
             </tr>
           </thead>
-          <tbody className=" ">
+          <tbody className="">
             {users &&
               users.map((user) => (
                 <tr key={user.ErNo} className="border-b hover:bg-gray-200">
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                     {user.ErNo}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                     {user.firstName}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                     {user.lastName}
                   </td>
                   <td>
                     <div className="flex flex-row gap-2">
                       <Link
                         href={`/users/edit/${user.ErNo}`}
-                        className="btn mx-auto my-1"
+                        className="mx-auto my-1 btn"
                       >
                         Edit
                       </Link>
                       <button
                         onClick={() => deleteUser(user.ErNo)}
-                        className="btn-del my-1 mx-auto"
+                        className="mx-auto my-1 btn-del"
                         disabled={user.isDeleting}
                       >
                         {user.isDeleting ? (

@@ -1,10 +1,10 @@
 import Image from "next/image";
-import leetCode from "../../public/leetB.svg";
+import leetCode from "/public/LeetB.svg";
 // import codechef from "../..s/public/Codecheflogo.svg.png";
-import interviewBit from "../../public/interviewBit.png";
-import hackkerank from "../../public/hackerrank.svg";
-import codeforces from "../../public/codeforces.svg";
-import spoj from "../../public/SPOJ.svg";
+import interviewBit from "/public/interviewBit.png";
+import hackkerank from "/public/hackerrank.svg";
+import codeforces from "/public/Codeforces.svg";
+import spoj from "/public/SPOJ.svg";
 
 function Card(props) {
   const plateform =

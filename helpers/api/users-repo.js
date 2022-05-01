@@ -1,5 +1,3 @@
-import ErNo from 'pages/api/users/[ErNo]';
-
 const fs = require('fs');
 
 // users in JSON file for simplicity, store in a db for production applications
@@ -42,7 +40,6 @@ function _delete(ErNo) {
     // filter out deleted user and save
     users = users.filter(x => x.ErNo.toString() !== ErNo.toString());
     saveData();
-    
 }
 
 // private helper functions

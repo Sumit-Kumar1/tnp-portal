@@ -22,22 +22,24 @@ function Nav() {
 
   return (
     <nav>
-      <div className="flex flex-row gap-5 text-xl bg-black text-white p-5">
+      <div className="flex flex-row gap-5 p-5 text-xl text-white bg-black">
         {user.role === "admin" ? (
-          <NavLink href="/admin" exact className="">
-            Home
-          </NavLink>
+          <>
+            <NavLink href="/admin" exact className="">
+              Home
+            </NavLink>
+            <NavLink href="/users" className="">
+              Users
+            </NavLink>
+          </>
         ) : (
-          <NavLink href="/student" exact className="">
-            Home
-          </NavLink>
+          <>
+            <NavLink href="/student" exact className="">
+              Home
+            </NavLink>
+          </>
         )}
-
-        {userService.userValue.role === "admin" && (
-          <NavLink href="/users" className="">
-            Users
-          </NavLink>
-        )}
+        <NavLink href="/jobs">Jobs</NavLink>
         <a onClick={logout} className="">
           Logout
         </a>
