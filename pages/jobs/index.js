@@ -28,8 +28,8 @@ function Index() {
 
   return (
     <div>
-      <h1>JOBS</h1>
-      <Link href="/jobs/add" className="mb-2 btn btn-sm btn-success">
+      <h1 className="text-xl text-center font-bold mt-3">JOBS</h1>
+      <Link href="/jobs/add" className="inline-block bg-transparent hover:bg-indigo-500 text-indigo-700 font-semibold hover:text-white py-2 px-4 border border-indigo-500 hover:border-transparent rounded mx-auto">
         Add Job
       </Link>
       <table className="table table-striped">

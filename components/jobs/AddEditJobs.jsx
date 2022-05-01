@@ -53,9 +53,10 @@ function AddEdit(props) {
   const { errors } = formState;
 
   function onSubmit(data) {
-    alert("Submitted");
     return (isAddMode ? createJob(data) : updateJob(job.id, data));
-  }
+  };
+
+
 
   function createJob(data) {
     return jobService
@@ -77,6 +78,7 @@ function AddEdit(props) {
   }
 
   return (
+
     <div className="w-1/2 h-full mx-auto md:w-1/3">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col justify-center h-full gap-2 mx-auto">
@@ -85,9 +87,8 @@ function AddEdit(props) {
             name="title"
             type="text"
             {...register("title")}
-            className={`border-2 rounded-md p-2 ${
-              errors.title ? "is-invalid" : ""
-            }`}
+            className={`border-2 rounded-md p-2 ${errors.title ? "is-invalid" : ""
+              }`}
           />
           <div className="text-red-500">{errors.title?.message}</div>
           <label className="font-bold">Job Description</label>
@@ -95,9 +96,8 @@ function AddEdit(props) {
             name="description"
             type="text"
             {...register("description")}
-            className={`border-2 rounded-md p-2 ${
-              errors.description ? "is-invalid" : ""
-            }`}
+            className={`border-2 rounded-md p-2 ${errors.description ? "is-invalid" : ""
+              }`}
           />
           <div className="text-red-500">{errors.description?.message}</div>
           <label className="font-bold">Company Name</label>
@@ -105,9 +105,8 @@ function AddEdit(props) {
             name="company"
             type="text"
             {...register("company")}
-            className={`border-2 rounded-md p-2 ${
-              errors.company ? "is-invalid" : ""
-            }`}
+            className={`border-2 rounded-md p-2 ${errors.company ? "is-invalid" : ""
+              }`}
           />
           <div className="text-red-500">{errors.company?.message}</div>
 
@@ -116,9 +115,8 @@ function AddEdit(props) {
             name="role"
             type="text"
             {...register("role")}
-            className={`border-2 rounded-md p-2 ${
-              errors.role ? "is-invalid" : ""
-            }`}
+            className={`border-2 rounded-md p-2 ${errors.role ? "is-invalid" : ""
+              }`}
           />
           <div className="text-red-500">{errors.role?.message}</div>
 
@@ -127,9 +125,8 @@ function AddEdit(props) {
             name="website"
             type="text"
             {...register("website")}
-            className={`border-2 rounded-md p-2 ${
-              errors.website ? "is-invalid" : ""
-            }`}
+            className={`border-2 rounded-md p-2 ${errors.website ? "is-invalid" : ""
+              }`}
           />
           <div className="text-red-500">{errors.website?.message}</div>
 
@@ -138,9 +135,8 @@ function AddEdit(props) {
             name="salary"
             type="number"
             {...register("salary")}
-            className={`border-2 rounded-md p-2 ${
-              errors.salary ? "is-invalid" : 0
-            }`}
+            className={`border-2 rounded-md p-2 ${errors.salary ? "is-invalid" : 0
+              }`}
           />
           <div className="text-red-500">{errors.salary?.message}</div>
 
@@ -149,9 +145,8 @@ function AddEdit(props) {
             name="startDate"
             type="date"
             {...register("startDate")}
-            className={`border-2 rounded-md p-2 ${
-              errors.startDate ? "is-invalid" : null
-            }`}
+            className={`border-2 rounded-md p-2 ${errors.startDate ? "is-invalid" : null
+              }`}
           />
           <div className="text-red-500">{errors.startDate?.message}</div>
 
@@ -160,13 +155,12 @@ function AddEdit(props) {
             name="endDate"
             type="date"
             {...register("endDate")}
-            className={`border-2 rounded-md p-2 ${
-              errors.endDate ? "is-invalid" : ""
-            }`}
+            className={`border-2 rounded-md p-2 ${errors.endDate ? "is-invalid" : ""
+              }`}
           />
           <div className="text-red-500">{errors.endDate?.message}</div>
           <button
-            
+
             type="submit"
             disabled={formState.isSubmitting}
             className="mr-2 btn btn-primary"
@@ -189,6 +183,5 @@ function AddEdit(props) {
           </Link>
         </div>
       </form>
-    </div>
-  );
+    </div>);
 }

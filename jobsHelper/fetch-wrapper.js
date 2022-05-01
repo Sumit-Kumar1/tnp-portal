@@ -19,6 +19,7 @@ function post(url, body) {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   };
+  console.log("hey its me from fetchWrapper");
   return fetch(url, requestOptions).then(handleResponse);
 }
 

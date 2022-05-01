@@ -9,4 +9,7 @@
     .btn-del{
         @apply  cursor-pointer py-2 px-3 block mt-4 bg-red-500 text-white hover:bg-red-700 font-bold w-full text-center rounded;
     }
+    .input{
+        @apply border-2 rounded-md p-2
+    }
 }
