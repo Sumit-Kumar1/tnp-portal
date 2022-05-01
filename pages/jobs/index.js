@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 
 import { Link } from "components";
-import { jobService} from "services";
+import { jobService, userService } from "services";
+import { JobCard } from "components/jobs/Jobcard";
 
 export default Index;
 
@@ -29,64 +30,114 @@ function Index() {
   return (
     <div>
       <h1 className="text-xl text-center font-bold mt-3">JOBS</h1>
-      <Link href="/jobs/add" className="inline-block bg-transparent hover:bg-indigo-500 text-indigo-700 font-semibold hover:text-white py-2 px-4 border border-indigo-500 hover:border-transparent rounded mx-auto">
-        Add Job
-      </Link>
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th style={{ width: "30%" }}>Name</th>
-            <th style={{ width: "30%" }}>Email</th>
-            <th style={{ width: "30%" }}>Role</th>
-            <th style={{ width: "10%" }}>#</th>
-          </tr>
-        </thead>
-        <tbody>
-          {jobs &&
-            jobs.map((job) => (
-              <tr key={job.id}>
-                <td>
-                  {job.title} {job.description} {job.company}
-                </td>
-                <td>{job.email}</td>
-                <td>{job.role}</td>
-                <td style={{ whiteSpace: "nowrap" }}>
-                  <Link
-                    href={`/jobs/edit/${job.id}`}
-                    className="mr-1 btn btn-sm btn-primary"
-                  >
-                    Edit
-                  </Link>
-                  <button
-                    onClick={() => deleteJob(job.id)}
-                    className="btn btn-sm btn-danger btn-delete-job"
-                    disabled={job.isDeleting}
-                  >
-                    {job.isDeleting ? (
-                      <span className="spinner-border spinner-border-sm"></span>
-                    ) : (
-                      <span>Delete</span>
-                    )}
-                  </button>
-                </td>
-              </tr>
-            ))}
-          {!jobs && (
-            <tr>
-              <td colSpan="4" className="text-center">
-                <div className="spinner-border spinner-border-lg align-center"></div>
-              </td>
-            </tr>
-          )}
-          {jobs && !jobs.length && (
-            <tr>
-              <td colSpan="4" className="text-center">
-                <div className="p-2">No jobs To Display</div>
-              </td>
-            </tr>
-          )}
-        </tbody>
-      </table>
+
+      {userService.userValue?.role === "admin" ? (
+        <>
+          <Link
+            href="/jobs/add"
+            className="block w-1/4 px-2 py-2 mx-auto my-2 font-bold text-center text-white bg-indigo-700 border-2 rounded-md hover:bg-indigo-900"
+          >
+            Add Job
+          </Link>
+          <div className="p-5">
+            <table className="table table-auto md:table-fixed min-w-full text-center">
+              <thead className="text-white bg-gray-800 border-b">
+                <tr>
+                  <th className="px-6 py-4 text-sm font-medium text-white">
+                    id
+                  </th>
+                  <th className="px-6 py-4 text-sm font-medium text-white">
+                    Job Title
+                  </th>
+                  <th className="px-6 py-4 text-sm font-medium text-white">
+                    Company
+                  </th>
+                  <th className="px-6 py-4 text-sm font-medium text-white">
+                    Roles
+                  </th>
+                  <th className="px-6 py-4 text-sm font-medium text-white">
+                    Dates
+                  </th>
+                  <th className="px-6 py-4 text-sm font-medium text-white">
+                    Action
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {jobs &&
+                  jobs.map((job) => (
+                    <tr key={job.id} className="border-b hover:bg-gray-200">
+                      <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
+                        {job.id}
+                      </td>
+                      <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
+                        {job.title}
+                      </td>
+                      <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap font-bold">
+                        {job.company}
+                      </td>
+                      <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
+                        {job.role}
+                      </td>
+                      <td className="text-left">
+                        <span className="text-green-500">Start:</span>{" "}
+                        {job.extras.startDate}
+                        <br /> <span className="text-red-500">End:</span>{" "}
+                        {job.extras.endDate}
+                      </td>
+                      <td style={{ whiteSpace: "nowrap" }}>
+                        <div className="flex xl:flex-row xl:gap-2 flex-col">
+                          <Link
+                            href={`/jobs/edit/${job.id}`}
+                            className="mx-auto my-1 btn"
+                          >
+                            Edit
+                          </Link>
+                          <button
+                            onClick={() => deleteJob(job.id)}
+                            className="mx-auto my-1 btn-del"
+                            disabled={job.isDeleting}
+                          >
+                            {job.isDeleting ? (
+                              <span className="spinner-border spinner-border-sm"></span>
+                            ) : (
+                              <span>Delete</span>
+                            )}
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  ))}
+                {!jobs && (
+                  <tr>
+                    <td colSpan="4" className="text-center">
+                      <div className="spinner-border spinner-border-lg align-center"></div>
+                    </td>
+                  </tr>
+                )}
+                {jobs && !jobs.length && (
+                  <tr>
+                    <td colSpan="6" className="text-center">
+                      <div className="p-2 text-xl font-mono font-bold">
+                        No jobs To Display,{" "}
+                        <span className="text-base underline underline-offset-2 text-red-500">
+                          {" "}
+                          Add Job First
+                        </span>
+                      </div>
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        </>
+      ) : (
+        <>{jobs && 
+          jobs.map((job) => {
+          // return <JobCard job={job.id}></JobCard>;
+        })}</>
+      )}
     </div>
   );
 }

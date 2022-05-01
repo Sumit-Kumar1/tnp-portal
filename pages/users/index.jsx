@@ -51,7 +51,7 @@ function Index() {
               <th className="px-6 py-4 text-sm font-medium text-white">#</th>
             </tr>
           </thead>
-          <tbody className="">
+          <tbody>
             {users &&
               users.map((user) => (
                 <tr key={user.ErNo} className="border-b hover:bg-gray-200">

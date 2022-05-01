@@ -1,11 +1,11 @@
-import { AddEdit } from 'components/jobs/AddEdit';
+import { AddEditJob } from 'components/jobs/AddEditJobs';
 import jobsService from 'services/jobs';
 
-export default AddEdit;
+export default AddEditJob;
 
 export async function getServerSideProps({ params }) {
-    const user = await jobsService.getById(params.id);
+    const job = await jobsService.getById(params.id);
     return {
-        props: { user }
+        props: { job }
     }
 }

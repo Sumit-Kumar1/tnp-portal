@@ -19,7 +19,7 @@ function getById(id) {
 }
 
 function create({ title, description, company, role, website, ...extras }) {
-  const job = { title, description, company, role, website };
+  const job = { title, description, company, role, website, extras };
 
   // validate
   if (jobs.find((x) => x.id === job.id))

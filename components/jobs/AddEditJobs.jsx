@@ -7,7 +7,7 @@ import { alertService } from "services";
 import { parse, isDate } from "date-fns";
 import { jobService } from "services";
 
-export { AddEdit };
+export { AddEditJob };
 
 const today = new Date();
 function parseDateString(value, originalValue) {
@@ -17,7 +17,7 @@ function parseDateString(value, originalValue) {
   return parse(originalValue, "yyyy-MM-dd", new Date());
 }
 
-function AddEdit(props) {
+function AddEditJob(props) {
   const job = props?.job;
   const isAddMode = !job;
   const router = useRouter();
@@ -27,19 +27,20 @@ function AddEdit(props) {
     title: Yup.string().required("Title is required"),
     description: Yup.string().required("Description is required"),
     company: Yup.string().required("Company is required"),
-    website: Yup.string(),
-    salary: Yup.number().min(0, "Salary must be greater than 0"),
+    website: Yup.string().required(),
+    salary: Yup.number().min(0, "Salary must be greater than 0").required(),
     role: Yup.string().required("Role is required"),
-    startDate: Yup.date()
-      .required("Start Date is Required")
-      .transform(parseDateString)
-      .min(today),
-    EndDate: Yup.date()
-      .required("End Date is Required")
-      .transform(parseDateString)
-      .when("Event Start Date", (startDate, schema) => {
-        startDate && schema.min(eventStartDate);
-      }),
+    // startDate: Yup.date()
+    //   .required("Start Date is Required")
+    //   .transform(parseDateString)
+    //   .min(today),
+    // EndDate: Yup.date()
+    //   .required("End Date is Required")
+    //   .transform(parseDateString)
+    // //   .max(today),
+    //   // .when("Event Start Date", (startDate, schema) =>
+    //   //   startDate && schema.min(startDate)
+    //   // ),
   });
   const formOptions = { resolver: yupResolver(validationSchema) };
 
@@ -78,7 +79,6 @@ function AddEdit(props) {
   }
 
   return (
-
     <div className="w-1/2 h-full mx-auto md:w-1/3">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col justify-center h-full gap-2 mx-auto">
@@ -87,8 +87,7 @@ function AddEdit(props) {
             name="title"
             type="text"
             {...register("title")}
-            className={`border-2 rounded-md p-2 ${errors.title ? "is-invalid" : ""
-              }`}
+            className={`input`}
           />
           <div className="text-red-500">{errors.title?.message}</div>
           <label className="font-bold">Job Description</label>
@@ -96,8 +95,7 @@ function AddEdit(props) {
             name="description"
             type="text"
             {...register("description")}
-            className={`border-2 rounded-md p-2 ${errors.description ? "is-invalid" : ""
-              }`}
+            className={`input`}
           />
           <div className="text-red-500">{errors.description?.message}</div>
           <label className="font-bold">Company Name</label>
@@ -105,8 +103,7 @@ function AddEdit(props) {
             name="company"
             type="text"
             {...register("company")}
-            className={`border-2 rounded-md p-2 ${errors.company ? "is-invalid" : ""
-              }`}
+            className={`input`}
           />
           <div className="text-red-500">{errors.company?.message}</div>
 
@@ -115,8 +112,7 @@ function AddEdit(props) {
             name="role"
             type="text"
             {...register("role")}
-            className={`border-2 rounded-md p-2 ${errors.role ? "is-invalid" : ""
-              }`}
+            className={`input`}
           />
           <div className="text-red-500">{errors.role?.message}</div>
 
@@ -125,8 +121,7 @@ function AddEdit(props) {
             name="website"
             type="text"
             {...register("website")}
-            className={`border-2 rounded-md p-2 ${errors.website ? "is-invalid" : ""
-              }`}
+            className={`input`}
           />
           <div className="text-red-500">{errors.website?.message}</div>
 
@@ -135,8 +130,7 @@ function AddEdit(props) {
             name="salary"
             type="number"
             {...register("salary")}
-            className={`border-2 rounded-md p-2 ${errors.salary ? "is-invalid" : 0
-              }`}
+            className={`input`}
           />
           <div className="text-red-500">{errors.salary?.message}</div>
 
@@ -145,8 +139,7 @@ function AddEdit(props) {
             name="startDate"
             type="date"
             {...register("startDate")}
-            className={`border-2 rounded-md p-2 ${errors.startDate ? "is-invalid" : null
-              }`}
+            className={`input`}
           />
           <div className="text-red-500">{errors.startDate?.message}</div>
 
@@ -155,12 +148,11 @@ function AddEdit(props) {
             name="endDate"
             type="date"
             {...register("endDate")}
-            className={`border-2 rounded-md p-2 ${errors.endDate ? "is-invalid" : ""
-              }`}
+            className={`input`}
           />
           <div className="text-red-500">{errors.endDate?.message}</div>
-          <button
 
+          <button
             type="submit"
             disabled={formState.isSubmitting}
             className="mr-2 btn btn-primary"

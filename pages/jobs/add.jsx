@@ -1,9 +1,9 @@
-import { AddEdit } from "components/jobs/AddEditJobs";
+import { AddEditJob } from "components/jobs/AddEditJobs";
 
 export default Add;
 
 function Add() {
   return (
-    <AddEdit />
+    <AddEditJob />
   );
 }

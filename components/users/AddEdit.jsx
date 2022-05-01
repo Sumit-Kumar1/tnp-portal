@@ -75,31 +75,25 @@ function AddEdit(props) {
             name="firstName"
             type="text"
             {...register("firstName")}
-            className={`border-2 rounded-md p-2 ${
-              errors.firstName ? "is-invalid" : ""
-            }`}
+            className="input"
           />
-          <div className="">{errors.firstName?.message}</div>
+          <div className="text-red-500">{errors.firstName?.message}</div>
           <label className="font-bold">Last Name</label>
           <input
             name="lastName"
             type="text"
             {...register("lastName")}
-            className={`border-2 rounded-md p-2 ${
-              errors.lastName ? "is-invalid" : ""
-            }`}
+            className="input"
           />
-          <div className="">{errors.lastName?.message}</div>
+          <div className="text-red-500">{errors.lastName?.message}</div>
           <label className="font-bold">Enrollment Number</label>
           <input
             name="ErNo"
             type="text"
             {...register("ErNo")}
-            className={`border-2 rounded-md p-2 ${
-              errors.ErNo ? "is-invalid" : ""
-            }`}
+            className="input"
           />
-          <div className="">{errors.email?.message}</div>
+          <div className="text-red-500">{errors.email?.message}</div>
           <label className="font-bold">
             Password
             {!isAddMode && (
@@ -110,25 +104,19 @@ function AddEdit(props) {
             name="password"
             type="password"
             {...register("password")}
-            className={`border-2 rounded-md p-2 ${
-              errors.password ? "is-invalid" : ""
-            }`}
+            className="input"
           />
-          <div className="">{errors.password?.message}</div>
+          <div className="text-red-500">{errors.password?.message}</div>
           <label className="font-bold">
             Role
             {!isAddMode && (
               <em className="ml-1">(Leave blank to keep the same password)</em>
             )}
           </label>
-          <input
-            name="password"
-            type="password"
-            {...register("password")}
-            className={`border-2 rounded-md p-2 ${
-              errors.password ? "is-invalid" : ""
-            }`}
-          />
+          <select name="role" {...register("role")} className="input">
+            <option value={"Admin"}>Admin</option>
+            <option value={"Student"}>Student</option>
+          </select>
           <button
             type="submit"
             disabled={formState.isSubmitting}

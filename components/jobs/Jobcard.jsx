@@ -1,7 +1,7 @@
 import NextLink from "next/link";
 
 export { JobCard };
-function JobCard({ id, ...details }) {
+function JobCard({ ...details }) {
   return (
     <div className="max-w-sm p-2 overflow-hidden rounded shadow-lg hover:shadow-xl hover:border-4 hover:border-indigo-400 hover:p-4">
       <div className="px-6 py-4">
@@ -16,10 +16,10 @@ function JobCard({ id, ...details }) {
         </span>
         <br />
         <span className="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">
-          Start: {details.startDate}
+          Start: {details.extras.startDate}
         </span>{" "}
         <span className="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">
-          End : {details.endDate}
+          End : {details.extras.endDate}
         </span>
       </div>
 
