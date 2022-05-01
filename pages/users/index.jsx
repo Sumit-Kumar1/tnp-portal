@@ -48,7 +48,8 @@ function Index() {
               <th className="px-6 py-4 text-sm font-medium text-white">
                 Last Name
               </th>
-              <th className="px-6 py-4 text-sm font-medium text-white">#</th>
+              <th className="px-6 py-4 text-sm font-medium text-white">Role</th>
+              <th className="px-6 py-4 text-sm font-medium text-white">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -64,6 +65,7 @@ function Index() {
                   <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
                     {user.lastName}
                   </td>
+                  <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">{user.role}</td>
                   <td>
                     <div className="flex flex-row gap-2">
                       <Link

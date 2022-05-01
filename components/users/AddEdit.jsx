@@ -114,7 +114,7 @@ function AddEdit(props) {
             )}
           </label>
           <select name="role" {...register("role")} className="input">
-            <option value={"Admin"}>Admin</option>
+            <option value={"admin"}>Admin</option>
             <option value={"Student"}>Student</option>
           </select>
           <button

@@ -22,5 +22,20 @@
         "hash": "$2a$10$uRFEMCYhe9aLuEHxw/.gFOPn/mFDbsag2BYYo91mAxO63VfMC7tn.",
         "dateCreated": "2022-04-25T05:26:38.832Z",
         "dateUpdated": "2022-04-25T05:27:21.510Z"
+    },
+    {
+        "ErNo": 191332,
+        "lastName": "aggarwal",
+        "firstName": "sparsh",
+        "role": "admin",
+        "accounts": [
+            "",
+            "",
+            "",
+            ""
+        ],
+        "hash": "$2a$10$wbaY3yV1jwO7N6z0HMo0Ye8Kz2r5rdNMXFFvR5AkBZPcYdCvfFikG",
+        "dateCreated": "2022-05-01T17:56:29.494Z",
+        "dateUpdated": "2022-05-01T17:57:03.213Z"
     }
 ]

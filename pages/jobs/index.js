@@ -47,13 +47,13 @@ function Index() {
                     id
                   </th>
                   <th className="px-6 py-4 text-sm font-medium text-white">
-                    Job Title
+                    Job Role
                   </th>
                   <th className="px-6 py-4 text-sm font-medium text-white">
                     Company
                   </th>
                   <th className="px-6 py-4 text-sm font-medium text-white">
-                    Roles
+                    Job Type
                   </th>
                   <th className="px-6 py-4 text-sm font-medium text-white">
                     Dates
@@ -71,13 +71,13 @@ function Index() {
                         {job.id}
                       </td>
                       <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
-                        {job.title}
+                        {job.role}
                       </td>
-                      <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap font-bold">
+                      <td className="px-6 py-4 text-sm text-gray-900 whitespace-nowrap font-bold">
                         {job.company}
                       </td>
                       <td className="px-6 py-4 text-sm font-medium text-gray-900 whitespace-nowrap">
-                        {job.role}
+                        {job.extras.jobType}
                       </td>
                       <td className="text-left">
                         <span className="text-green-500">Start:</span>{" "}
@@ -133,10 +133,14 @@ function Index() {
           </div>
         </>
       ) : (
-        <>{jobs && 
-          jobs.map((job) => {
-          // return <JobCard job={job.id}></JobCard>;
-        })}</>
+          <div className="grid grid-flow-col grid-rows-3 gap-4">
+            {jobs &&
+              jobs.map((job) => {
+                return (
+                  <JobCard key={job.id} id={job.id} details={job}></JobCard>
+                );
+              })}
+          </div>
       )}
     </div>
   );

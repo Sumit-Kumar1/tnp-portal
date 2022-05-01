@@ -1,20 +1,42 @@
+import Image from "next/image";
 import NextLink from "next/link";
+import jobSvg from "public/job.svg"
+import rupeeSvg from "public/rupee.svg"
 
 export { JobCard };
-function JobCard({ ...details }) {
+function JobCard({ id, details }) {
   return (
-    <div className="max-w-sm p-2 overflow-hidden rounded shadow-lg hover:shadow-xl hover:border-4 hover:border-indigo-400 hover:p-4">
+    <div className="p-3 border-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:rounded-xl hover:scale-105 duration-300 ...">
       <div className="px-6 py-4">
-        <h2 className="mb-2 text-xl font-bold">{details.title}</h2>
-        <p className="text-base text-gray-700">
-          Description: {details.description}
+        <NextLink href={details.website}  passHref>
+          <a className="text-xl font-semibold hover:text-blue-400 hover:underline">
+            <Image
+              src={jobSvg}
+              width={20}
+              height={20}
+              alt="job_image"
+            ></Image> {details.role}</a>
+        </NextLink>
+        <p >{details.company}</p>
+        <p className="text-base text-gray-700 p-2">
+          <span className="underline underline-offset-2">Description</span> <br /> {details.description}
         </p>
       </div>
-      <div>
+      <div >
         <span className="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">
-          {details.role}
+          <Image
+            src={rupeeSvg}
+            alt="ruppeSvg"
+            width={15}
+            height={15}
+          ></Image>
+          {details.extras.salary}
         </span>
+        <span className="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">
+          #{details.extras.jobType}
+        </span>{" "}
         <br />
+
         <span className="inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full">
           Start: {details.extras.startDate}
         </span>{" "}
@@ -23,8 +45,8 @@ function JobCard({ ...details }) {
         </span>
       </div>
 
-      <NextLink href={`/jobs/[id]`} as={`/jobs/${id}`} passHref>
-        <a className="btn">More Info</a>
+      <NextLink href={details.website} passHref>
+        <a className="btn bg-green-500 hover:bg-green-700" target="_blank">Apply</a>
       </NextLink>
     </div>
   );

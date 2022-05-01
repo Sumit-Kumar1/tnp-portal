@@ -8,6 +8,7 @@ import { parse, isDate } from "date-fns";
 import { jobService } from "services";
 
 export { AddEditJob };
+const re = /^((http|https):\/\/)?(www.)?(?!.*(http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+(\/)?.([\w\?[a-zA-Z-_%\/@?]+)*([^\/\w\?[a-zA-Z0-9_-]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/;
 
 const today = new Date();
 function parseDateString(value, originalValue) {
@@ -24,12 +25,12 @@ function AddEditJob(props) {
 
   // form validation rules
   const validationSchema = Yup.object().shape({
-    title: Yup.string().required("Title is required"),
     description: Yup.string().required("Description is required"),
     company: Yup.string().required("Company is required"),
-    website: Yup.string().required(),
+    website: Yup.string().matches(re, 'Enter correct url!').required(),
     salary: Yup.number().min(0, "Salary must be greater than 0").required(),
     role: Yup.string().required("Role is required"),
+    jobType: Yup.string().required("Job Type is required"),
     // startDate: Yup.date()
     //   .required("Start Date is Required")
     //   .transform(parseDateString)
@@ -82,31 +83,6 @@ function AddEditJob(props) {
     <div className="w-1/2 h-full mx-auto md:w-1/3">
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col justify-center h-full gap-2 mx-auto">
-          <label className="font-bold">Job Title</label>
-          <input
-            name="title"
-            type="text"
-            {...register("title")}
-            className={`input`}
-          />
-          <div className="text-red-500">{errors.title?.message}</div>
-          <label className="font-bold">Job Description</label>
-          <input
-            name="description"
-            type="text"
-            {...register("description")}
-            className={`input`}
-          />
-          <div className="text-red-500">{errors.description?.message}</div>
-          <label className="font-bold">Company Name</label>
-          <input
-            name="company"
-            type="text"
-            {...register("company")}
-            className={`input`}
-          />
-          <div className="text-red-500">{errors.company?.message}</div>
-
           <label className="font-bold">Job Role</label>
           <input
             name="role"
@@ -115,6 +91,36 @@ function AddEditJob(props) {
             className={`input`}
           />
           <div className="text-red-500">{errors.role?.message}</div>
+
+          <label className="font-bold">Job Type</label>
+          <select
+            name="jobType"
+            type="text"
+            {...register("jobType")}
+            className={`input`}
+          >
+            <option value="Internship">Internship</option>
+            <option value="Full-Time">Full-Time</option>
+            <option value="Part-Time">Part-Time</option>
+          </select>
+
+          <label className="font-bold">Job Description</label>
+          <input
+            name="description"
+            type="text"
+            {...register("description")}
+            className={`input`}
+          />
+          <div className="text-red-500">{errors.description?.message}</div>
+
+          <label className="font-bold">Company Name</label>
+          <input
+            name="company"
+            type="text"
+            {...register("company")}
+            className={`input`}
+          />
+          <div className="text-red-500">{errors.company?.message}</div>
 
           <label className="font-bold">website</label>
           <input
