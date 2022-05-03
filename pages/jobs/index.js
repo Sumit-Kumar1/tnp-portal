@@ -29,7 +29,7 @@ function Index() {
 
   return (
     <div>
-      <h1 className="text-xl text-center font-bold mt-3">JOBS</h1>
+      <h1 className="text-2xl text-center font-bold m-3 p-5 underline underline-offset-2">JOBS</h1>
 
       {userService.userValue?.role === "admin" ? (
         <>
