@@ -22,7 +22,7 @@ function Nav() {
 
   return (
     <nav>
-      <div className="flex flex-row gap-5 p-5 text-xl text-white bg-black">
+      <div className="flex flex-row gap-5 p-5 text-xl text-white bg-black rounded-md mx-2 mt-2">
         {user.role === "admin" ? (
           <>
             <NavLink href="/admin" exact className="">

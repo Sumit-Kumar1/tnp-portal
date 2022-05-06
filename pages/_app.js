@@ -6,6 +6,7 @@ import "styles/globals.css";
 
 import { userService } from "services";
 import { Nav, Alert } from "components";
+import Footer from "components/dashboard/footer";
 
 export default App;
 
@@ -54,6 +55,8 @@ function App({ Component, pageProps }) {
     <>
       <Head>
         <title>Tnp-Portal Login</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <metadata name="description" content="Tnp-Portal Login Author : Sumit Kumar" />
         {/* eslint-disable-next-line @next/next/no-css-tags */}
       </Head>
 
@@ -61,6 +64,7 @@ function App({ Component, pageProps }) {
         <Nav />
         <Alert />
         {authorized && <Component {...pageProps} />}
+        <Footer></Footer>
       </div>
     </>
   );

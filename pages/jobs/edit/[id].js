@@ -18,7 +18,6 @@ function Edit({ id }) {
 
   return (
     <>
-      <h1>Edit job</h1>
       {job ? <AddEditJob job={job} /> : <Spinner />}
     </>
   );

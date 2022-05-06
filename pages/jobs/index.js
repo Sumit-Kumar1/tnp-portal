@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { Link } from "components";
 import { jobService, userService } from "services";
 import { JobCard } from "components/jobs/Jobcard";
+import Footer from "components/dashboard/footer";
 
 export default Index;
 
@@ -133,7 +134,7 @@ function Index() {
           </div>
         </>
       ) : (
-          <div className="grid grid-flow-col grid-rows-3 gap-4">
+          <div className="grid grid-flow-row md:grid-flow-col gap-4 m-5">
             {jobs &&
               jobs.map((job) => {
                 return (
@@ -142,6 +143,7 @@ function Index() {
               })}
           </div>
       )}
+      <Footer></Footer>
     </div>
   );
 }

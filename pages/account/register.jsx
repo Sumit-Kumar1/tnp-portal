@@ -52,23 +52,22 @@ function Register() {
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="flex flex-col gap-1">
             <label className="font-bold">First Name</label>
-            <input
-              name="firstName"
-              type="text"
-              {...register("firstName")}
-              className={`border-2 rounded-md p-2 ${
-                errors.firstName ? "is-invalid" : ""
-              }`}
-            />
+              <input
+                name="firstName"
+                type="text"
+                {...register("firstName")}
+                className={`border-2 rounded-md p-2 ${errors.firstName ? "is-invalid" : ""
+                  }`}
+              />
+
             <div className="text-red-500">{errors.firstName?.message}</div>
             <label className="font-bold">Last Name</label>
             <input
               name="lastName"
               type="text"
               {...register("lastName")}
-              className={`border-2 rounded-md p-2 ${
-                errors.lastName ? "is-invalid" : ""
-              }`}
+              className={`border-2 rounded-md p-2 ${errors.lastName ? "is-invalid" : ""
+                }`}
             />
             <div className="text-red-500">{errors.lastName?.message}</div>
             <label className="font-bold">Enrollment No</label>
@@ -76,9 +75,8 @@ function Register() {
               name="ErNo"
               type="text"
               {...register("ErNo")}
-              className={`border-2 rounded-md p-2 ${
-                errors.ErNo ? "is-invalid" : ""
-              }`}
+              className={`border-2 rounded-md p-2 ${errors.ErNo ? "is-invalid" : ""
+                }`}
             />
             <div className="text-red-500">{errors.ErNo?.message}</div>
             <label className="font-bold">Password</label>
@@ -86,9 +84,8 @@ function Register() {
               name="password"
               type="password"
               {...register("password")}
-              className={`border-2 rounded-md p-2 ${
-                errors.password ? "is-invalid" : ""
-              }`}
+              className={`border-2 rounded-md p-2 ${errors.password ? "is-invalid" : ""
+                }`}
             />
             <div className="text-red-500">{errors.password?.message}</div>
           </div>

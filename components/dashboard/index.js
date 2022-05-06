@@ -2,6 +2,7 @@ import Card from "./card";
 import { userService } from "services";
 import FormData from "./form";
 import { FetchData } from "helpers/fetchData";
+import { Spinner } from "components";
 
 export default DashBoard;
 function DashBoard() {
@@ -12,7 +13,7 @@ function DashBoard() {
       {!userService.userValue?.accounts.length ? (
         <FormData></FormData>
       ) : (
-        <div className="grid grid-flow-col gap-3 p-3">
+        <div className="grid grid-flow-col gap-2">
           {userNames.map((userName, index) => {
             if (userName !== "") {
               const { data, error } = FetchData(userName, plateForm[index]);
@@ -20,7 +21,7 @@ function DashBoard() {
                 return (
                   <h1>{`${error} check userName : {${userName}} or try after someTime`}</h1>
                 );
-              if (!data) return <p>Loading Data...</p>;
+              if (!data) return <Spinner></Spinner>;
               let solved_status;
               switch (index) {
                 case 0:

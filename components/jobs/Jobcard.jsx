@@ -6,7 +6,7 @@ import rupeeSvg from "public/rupee.svg"
 export { JobCard };
 function JobCard({ id, details }) {
   return (
-    <div className="p-3 border-2 transition ease-in-out delay-150 hover:-translate-y-1 hover:rounded-xl hover:scale-105 duration-300 ...">
+    <div className="p-3 border-2 rounded-xl border-indigo-500 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-300 ...">
       <div className="px-6 py-4">
         <NextLink href={details.website}  passHref>
           <a className="text-xl font-semibold hover:text-blue-400 hover:underline">

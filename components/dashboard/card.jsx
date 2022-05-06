@@ -22,16 +22,15 @@ function Card(props) {
       <Image
         src={plateform}
         alt={`${props.plat} image`}
-        layout="responsive"
-        objectFit="cover"
-        // height={100}
-        // width={100}
-        className=""
+        layout="fixed"
+        height={150}
+        width={150}
+
       ></Image>{" "}
       <div className="">
         <h1 className="font-bold text-xl py-2">{props.plat}</h1>
-        <h2 className="text-lg text-indigo-500">{props.userName}</h2>
-        <p><span className="font-light">{`( ${props.solved} )`}</span></p>
+        <h2 className="text-lg text-[#7e21d4]">{props.userName}</h2>
+        <p><span className="font-medium text-[#7630ff]">{`( ${props.solved} )`}</span></p>
       </div>
     </div>
   );
