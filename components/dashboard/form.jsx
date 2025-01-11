@@ -1,6 +1,6 @@
-import { alertService, userService } from "services";
-import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { alertService, userService } from "services";
 
 export default FormData;
 
@@ -17,7 +17,7 @@ function FormData() {
   function onSubmit(e) {
     e.preventDefault();
     let accounts = [];
-    for (const i = 0; i < 4; ++i) {
+    for (let i = 0; i < 4; ++i) {
       accounts.push(e.target[i].value);
     }
     userService.update(userService.userValue?.ErNo, { accounts });

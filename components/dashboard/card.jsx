@@ -1,9 +1,9 @@
 import Image from "next/image";
 import leetCode from "/public/LeetB.svg";
 // import codechef from "../..s/public/Codecheflogo.svg.png";
-import interviewBit from "/public/interviewBit.png";
-import hackkerank from "/public/hackerrank.svg";
 import codeforces from "/public/Codeforces.svg";
+import hackkerank from "/public/hackerrank.svg";
+import interviewBit from "/public/interviewBit.png";
 import spoj from "/public/SPOJ.svg";
 
 function Card(props) {

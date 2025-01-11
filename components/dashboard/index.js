@@ -1,8 +1,8 @@
-import Card from "./card";
-import { userService } from "services";
-import FormData from "./form";
-import { FetchData } from "helpers/fetchData";
 import { Spinner } from "components";
+import { FetchData } from "helpers/fetchData";
+import { userService } from "services";
+import Card from "./card";
+import FormData from "./form";
 
 export default DashBoard;
 function DashBoard() {
