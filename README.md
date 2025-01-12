@@ -1,6 +1,7 @@
 # TnP Portal
 
 ## TnP Portal Features
+
 The TnP portal typically has the following features:
 
 1. **Student Profile Management**: Allows students to create and manage their profiles, including personal details, educational background, skills, and resumes.
