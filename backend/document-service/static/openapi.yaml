@@ -1,0 +1,257 @@
+openapi: 3.1.0
+info:
+  title: Document Service
+  description: Document Service to store documents in mongo DB
+  version: 0.0.1
+servers:
+  - url: "http://localhost:9001"
+paths:
+  /v1/document:
+    post:
+      tags:
+        - Document
+      summary: create a new document entry
+      description: store a new document in database
+      requestBody:
+        content:
+          application/json:
+            schema:
+              required: true
+              properties:
+                name:
+                  type: string
+                  example: my_resume.pdf
+                document:
+                  type: binary
+                  format: file
+      responses:
+        201:
+          description: document created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  docName:
+                    type: string
+                    example: "my_resume.pdf"
+                  docID:
+                    type: string
+                    example: "aldkjf298oyu98yh_3289u0[oj12n3ee"
+        400:
+          description: Not a valid document
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                error:
+                  code: Input Error
+                  reason: Not able process the provided document
+                  dateTime:
+                    value: 2025-01-16T07:01:39Z
+                    timezone: IST
+        409:
+          description: New response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                error:
+                  code: Conflict
+                  reason: Document with same name already exists
+                  dateTime:
+                    value: 2025-01-16T07:01:39Z
+                    timezone: IST
+        500:
+          description: internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+                example:
+                  error:
+                    code: Internal Server Error
+                    reason: Not able to process the document query
+                    dateTime:
+                      value: 2025-01-16T07:01:39Z
+                      timezone: IST
+
+  /v1/document/{docId}:
+    get:
+      tags:
+        - Document
+      description: fetch a document based on its document id, return document blob
+      summary: fetch a document
+      parameters:
+        - name: docId
+          in: path
+          content:
+            schema:
+              type: string
+              example: "5a7bb4d0-fa0b-45f1-ac4e-fa7789c5018c"
+      responses:
+        200:
+          description: success document fetch
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getDocResp"
+        404:
+          description: document not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+                example:
+                  error:
+                    code: Not Found
+                    reason: "Not able to found the document with docId: 5a7bb4d0-fa0b-45f1-ac4e-fa7789c5018c"
+                    dateTime:
+                      value: 2025-01-16T07:01:39Z
+                      timezone: IST
+        500:
+          description: internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+                example:
+                  error:
+                    code: Internal Server Error
+                    reason: "Not able to process the document query"
+                    dateTime:
+                      value: 2025-01-16T07:01:39Z
+                      timezone: IST
+    put:
+      tags:
+        - Document
+      description: Updates a current existing document
+      responses:
+        200:
+          description: New response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getDocResp"
+        400:
+          description: Not a valid document
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                error:
+                  code: Input Error
+                  reason: Not able process the provided document
+                  dateTime:
+                    value: 2025-01-16T07:01:39Z
+                    timezone: IST
+        409:
+          description: New response
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+              example:
+                error:
+                  code: Conflict
+                  reason: Document with same name already exists
+                  dateTime:
+                    value: 2025-01-16T07:01:39Z
+                    timezone: IST
+        500:
+          description: internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+                example:
+                  error:
+                    code: Internal Server Error
+                    reason: Not able to process the document query
+                    dateTime:
+                      value: 2025-01-16T07:01:39Z
+                      timezone: IST
+
+    delete:
+      tags:
+        - Document
+      description: deletes a document by its document Id
+      summary: deletes a document
+      parameters:
+        - name: docId
+          in: path
+          required: true
+          content:
+            schema:
+              type: string
+              example: 5a7bb4d0-fa0b-45f1-ac4e-fa7789c5018c
+      responses:
+        204:
+          description: success delete of document
+        404:
+          description: document not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+                example:
+                  error:
+                    code: Not Found
+                    reason: "Not able to found the document with docId: 5a7bb4d0-fa0b-45f1-ac4e-fa7789c5018c"
+                    dateTime:
+                      value: 2025-01-16T07:01:39Z
+                      timezone: IST
+        500:
+          description: internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+                example:
+                  error:
+                    code: Internal Server Error
+                    reason: "Not able to process the document query"
+                    dateTime:
+                      value: 2025-01-16T07:01:39Z
+                      timezone: IST
+
+components:
+  schemas:
+    dateTime:
+      type: object
+      properties:
+        value:
+          type: string
+          format: time
+          example: "2025-01-16T07:01:39Z"
+        timezone:
+          type: string
+          example: "IST"
+    error:
+      type: object
+      properties:
+        code:
+          type: string
+        reason:
+          type: string
+        dateTime:
+          type: object
+          "$ref": "#/components/schemas/dateTime"
+    getDocResp:
+      type: obejct
+      properties:
+        id:
+          type: string
+          example: 5a7bb4d0-fa0b-45f1-ac4e-fa7789c5018c
+        name:
+          type: string
+          example: my_resume.pdf
+        document:
+          type: binary
+          format: file
+        type:
+          type: string
+          example: pdf
