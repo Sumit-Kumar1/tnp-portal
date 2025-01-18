@@ -1,0 +1,238 @@
+openapi: 3.1.0
+info:
+  title: TnP-Portal backend
+  description: This is backend api for TnP Portal to manage users, students, job-postings, applications and document for TnP Portal system.
+  version: 0.1.0
+
+servers:
+  - url: http://localhost:9000/
+    description: server for dev testing purpose
+
+paths:
+  /v1/register:
+    post:
+      tags:
+        - Users
+      summary: create and register a user with users details into the system
+      description: This endpoint will create a new user into the system and assign role based on user information provided.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/usersReq"
+      responses:
+        "201":
+          description: user created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: adfe*$ajhfah^&83u2980yasd089fy
+        "400":
+          description: invalid organization ID provided
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpError"
+        "409":
+          description: user with same enrollment number already exists
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/httpError"
+
+  /v1/login:
+    post:
+      tags:
+        - Users
+      description: login a user based on provided information
+      summary: let a user logs into the system
+      requestBody:
+        content:
+          application/json:
+            schema:
+              "$ref": "#/components/schemas/userLoginReq"
+      responses:
+        "201":
+          description: success status of login
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    example: "321049734uakjsdbnka$%nh3928y49-rwyg#%$kafiohp"
+        "400":
+          description: invalid enrollment number provided
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/httpError"
+        "404":
+          description: user with enrollment number not found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/httpError"
+
+  /v1/user/{userId}:
+    patch:
+      tags:
+        - User
+      description: "Updates specific item for user resource update-able are : name, password, email, role"
+      summary: "update user info based on unique userId"
+      parameters:
+        - name: userId
+          schema:
+            type: string
+            example: 191325
+          description: unique orgId of user
+          in: path
+          required: true
+      responses:
+        200:
+          description: success update of an element of user resource
+          content:
+            application/json:
+              schema:
+                type: object
+    put:
+      tags:
+        - User
+      description: Update user info - name, email, enrollmentId, password
+      summary: updates user info for specific userId
+      parameters:
+        - name: userId
+          schema:
+            type: string
+            example: 191325
+          description: unique orgId of user
+          in: path
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              $ref: "#/components/schemas/usersReq"
+      responses:
+        200:
+          description: Successfully updated user info
+          content:
+            application/json:
+              schema:
+                type: object
+
+    get:
+      tags:
+        - User
+      description: "fetch the details of a specific user with UserID provided"
+      summary: "fetch user details"
+      parameters:
+        - name: userId
+          schema:
+            type: string
+            example: "191325"
+          description: "unique user id i.e unique organization id"
+          in: path
+          required: true
+      responses:
+        "200":
+          description: success get of user information
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/userResp"
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+  schemas:
+    httpError:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            "$ref": "#/components/schemas/error"
+    dateTime:
+      type: object
+      properties:
+        value:
+          type: string
+          format: time
+          example: "2025-01-16T07:01:39Z"
+        timezone:
+          type: string
+          example: "IST"
+    error:
+      type: object
+      properties:
+        code:
+          type: string
+        reason:
+          type: string
+        dateTime:
+          type: object
+          "$ref": "#/components/schemas/dateTime"
+    usersReq:
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+          description: a strong alpha-numeric password, not less than 8 characters
+        enrollmentNumber:
+          type: string
+          description: your organization specific enrollment number
+      required: [name, email, password, enrollmentNumber]
+    userLoginReq:
+      type: object
+      properties:
+        enrollmentNumber:
+          type: string
+          example: 191325
+        password:
+          type: string
+          example: yourStrongPassword
+      required: [email, enrollmentNumber, password]
+    userResp:
+      type: object
+      properties:
+        userId:
+          type: string
+          example: 191325
+        name:
+          type: string
+          example: "Sumit Kumar"
+        email:
+          type: string
+          example: 191325@juitsolan.com
+        role:
+          type: string
+          example: student
+        createdAt:
+          type: object
+          "$ref": "#/components/schemas/dateTime"
+        updatedAt:
+          type: object
+          $ref: "#/components/schemas/dateTime"
+    studentReq:
+      type: object
+      properties:
+        name:
+          type: string
+          example: sumit kumar
+
+security:
+  - bearerAuth: []

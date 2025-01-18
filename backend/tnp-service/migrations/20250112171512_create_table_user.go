@@ -8,6 +8,7 @@ const (
 	queryCreateUserEnum  = `CREATE TYPE users_role AS ENUM ('admin', 'student', 'maintainer', 'management', 'tnp_unit');`
 	queryUserTableCreate = `CREATE TABLE IF NOT EXISTS users(
 		user_id VARCHAR(36) PRIMARY KEY,
+		enrollment_id VARCHAR(10) NOT NULL,	
 		name VARCHAR(50) NOT NULL,
 		email VARCHAR(100) UNIQUE NOT NULL,
 		password_hash BYTEA NOT NULL,

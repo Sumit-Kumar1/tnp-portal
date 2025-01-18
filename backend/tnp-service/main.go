@@ -1,7 +1,7 @@
 package main
 
 import (
-	"tnp-backend/migrations"
+	"tnp-service/migrations"
 
 	"gofr.dev/pkg/gofr"
 )

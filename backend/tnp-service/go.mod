@@ -1,4 +1,4 @@
-module tnp-backend
+module tnp-service
 
 go 1.23.4
 
