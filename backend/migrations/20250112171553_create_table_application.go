@@ -3,12 +3,11 @@ package migrations
 import "gofr.dev/pkg/gofr/migration"
 
 const (
-	queryApplicationTableCreate = `CREATE TYPE application_status AS ENUM('applied', 'shortlisted', 'rejected', 'pending', 'withdraw');
-	CREATE TABLE IF NOT EXISTS application(
+	queryApplicationTableCreate = `CREATE TABLE IF NOT EXISTS application(
 		application_id UUID PRIMARY KEY,
 		job_id UUID NOT NULL,
 		student_id UUID NOT NULL,
-		status application_status,
+		status VARCHAR(50),
 		applied_at TIMESTAMPTZ NOT NULL,
 		updated_at TIMESTAMPTZ);`
 )
