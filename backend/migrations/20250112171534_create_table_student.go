@@ -3,8 +3,8 @@ package migrations
 import "gofr.dev/pkg/gofr/migration"
 
 const (
-	queryStudentTableCreate = `CREATE TYPE student_degree AS ENUM('BTech', 'MTech', 'BCA', 'MCA', 'Ph.D', 'Integrated');
-	CREATE TABLE IF NOT EXISTS student(
+	queryStudentDegreeTypeCreate = `CREATE TYPE student_degree AS ENUM('BTech', 'MTech', 'BCA', 'MCA', 'Ph.D', 'Integrated');`
+	queryStudentTableCreate      = `CREATE TABLE IF NOT EXISTS student(
 		student_id UUID PRIMARY KEY,
 		user_id UUID NOT NULL,
 		name VARCHAR(50) NOT NULL,
@@ -23,6 +23,10 @@ const (
 func CreateStudentTable() migration.Migrate {
 	return migration.Migrate{
 		UP: func(d migration.Datasource) error {
+			if _, err := d.SQL.Exec(queryStudentDegreeTypeCreate); err != nil {
+				return err
+			}
+			
 			if _, err := d.SQL.Exec(queryStudentTableCreate); err != nil {
 				return err
 			}

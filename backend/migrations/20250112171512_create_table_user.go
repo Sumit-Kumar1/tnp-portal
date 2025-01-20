@@ -5,9 +5,9 @@ import (
 )
 
 const (
-	queryCreateUserEnum  = `CREATE TYPE users_role AS ENUM ('admin', 'student', 'maintainer', 'management', 'tnp_unit');`
-	queryUserTableCreate = `CREATE TABLE IF NOT EXISTS users(
-		user_id VARCHAR(36) PRIMARY KEY,
+	queryUserTableCreate = `CREATE TYPE users_role AS ENUM ('admin', 'student', 'maintainer', 'management', 'tnp_unit');
+	CREATE TABLE IF NOT EXISTS users(
+		user_id UUID PRIMARY KEY,
 		enrollment_id VARCHAR(10) NOT NULL,	
 		name VARCHAR(50) NOT NULL,
 		email VARCHAR(100) UNIQUE NOT NULL,
@@ -20,10 +20,6 @@ const (
 func CreateUserTable() migration.Migrate {
 	return migration.Migrate{
 		UP: func(d migration.Datasource) error {
-			if _, err := d.SQL.Exec(queryCreateUserEnum); err != nil {
-				return err
-			}
-
 			if _, err := d.SQL.Exec(queryUserTableCreate); err != nil {
 				return err
 			}

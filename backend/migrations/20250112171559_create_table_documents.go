@@ -7,7 +7,7 @@ const (
 		doc_id UUID PRIMARY KEY,
 		user_id UUID NOT NULL,
 		doc_type VARCHAR(10) NOT NULL,
-		file_path TEXT NOT NULL,
+		document bytea NOT NULL,
 		created_at TIMESTAMPTZ NOT NULL,
 		updated_at TIMESTAMPTZ);`
 )
