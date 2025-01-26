@@ -13,16 +13,16 @@ paths:
     post:
       tags:
         - Users
-      summary: create and register a user with users details into the system
+      summary: Create and register a user with users details into the system
       description: This endpoint will create a new user into the system and assign role based on user information provided.
       requestBody:
         content:
           application/json:
             schema:
-              "$ref": "#/components/schemas/usersReq"
+              $ref: "#/components/schemas/usersReq"
       responses:
-        "201":
-          description: user created successfully
+        201:
+          description: User created successfully
           content:
             application/json:
               schema:
@@ -30,34 +30,40 @@ paths:
                 properties:
                   token:
                     type: string
-                    example: adfe*$ajhfah^&83u2980yasd089fy
-        "400":
-          description: invalid organization ID provided
+                    example: 'adze*$ajhfah^&83u2980yasd089fy'
+        400:
+          description: Invalid organization ID provided
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/httpError"
-        "409":
-          description: user with same enrollment number already exists
+                $ref: "#/components/schemas/400Error"
+        409:
+          description: User with same enrollment number already exists
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/httpError"
+                $ref: "#/components/schemas/409Error"
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/500Error"
 
   /v1/login:
     post:
       tags:
         - Users
-      description: login a user based on provided information
-      summary: let a user logs into the system
+      description: Login a user based on provided information
+      summary: Let a user logs into the system
       requestBody:
         content:
           application/json:
             schema:
-              "$ref": "#/components/schemas/userLoginReq"
+              $ref: "#/components/schemas/userLoginReq"
       responses:
-        "201":
-          description: success status of login
+        201:
+          description: Success status of login
           content:
             application/json:
               schema:
@@ -65,26 +71,32 @@ paths:
                 properties:
                   token:
                     type: string
-                    example: "321049734uakjsdbnka$%nh3928y49-rwyg#%$kafiohp"
-        "400":
-          description: invalid enrollment number provided
+                    example: 'A1049734uakjsdbnka$%nh3928y49-rwyg%kafiohp'
+        400:
+          description: Invalid enrollment number provided
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/httpError"
-        "404":
-          description: user with enrollment number not found
+                $ref: "#/components/schemas/400Error"
+        404:
+          description: User with enrollment number not found
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/httpError"
+                $ref: "#/components/schemas/404Error"
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/500Error"
 
   /v1/user/{userId}:
     patch:
       tags:
         - User
       description: "Updates specific item for user resource update-able are : name, password, email, role"
-      summary: "update user info based on unique userId"
+      summary: "Update user info based on unique userId"
       parameters:
         - name: userId
           schema:
@@ -95,22 +107,40 @@ paths:
           required: true
       responses:
         200:
-          description: success update of an element of user resource
+          description: Success update of an element of user resource
           content:
             application/json:
               schema:
-                type: object
+                $ref: "#/components/schemas/userResp"
+        400:
+          description: Invalid enrollment number provided
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/400Error"
+        404:
+          description: User with enrollment number not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/404Error"
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/500Error"
     put:
       tags:
         - User
       description: Update user info - name, email, enrollmentId, password
-      summary: updates user info for specific userId
+      summary: Updates user info for specific userId
       parameters:
         - name: userId
           schema:
             type: string
             example: 191325
-          description: unique orgId of user
+          description: Unique orgId of user
           in: path
           required: true
       requestBody:
@@ -125,28 +155,231 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-
+                $ref: "#/components/schemas/userResp"
+        400:
+          description: Invalid enrollment number provided
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/400Error"
+        404:
+          description: User with enrollment number not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/404Error"
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/500Error"
     get:
       tags:
         - User
-      description: "fetch the details of a specific user with UserID provided"
-      summary: "fetch user details"
+      description: "Fetch the details of a specific user with UserID provided"
+      summary: "Fetch user details"
       parameters:
         - name: userId
           schema:
             type: string
             example: "191325"
-          description: "unique user id i.e unique organization id"
+          description: "Unique user id i.e unique organization id"
           in: path
           required: true
       responses:
-        "200":
-          description: success get of user information
+        200:
+          description: Success get of user information
           content:
             application/json:
               schema:
-                "$ref": "#/components/schemas/userResp"
+                $ref: "#/components/schemas/userResp"
+        400:
+          description: Invalid enrollment number provided
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/400Error"
+        404:
+          description: User with enrollment number not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/404Error"
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/500Error"
+
+  /v1/student:
+    post:
+      tags:
+        - Student
+      summary: Create a new student
+      description: Create a new student resource where it can be student and student information
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/studentReq"
+      responses:
+        201:
+          description: Successfully created a new student
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/studentResp"
+        400:
+          description: Invalid organization ID provided
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/400Error"
+        409:
+          description: User with same enrollment number already exists
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/409Error"
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/500Error"
+
+  /v1/student/{studentId}:
+    get:
+      tags:
+      - Student
+      summary: Fetch the student information based on ID
+      description: Fetch the student information
+      parameters:
+        - name: studentId
+          in: path
+          schema:
+            type: string
+            example: 01939237-2a5b-48d6-9df3-d38cc205a898
+          required: true
+      responses:
+        200:
+          description: Successfully fetch the student
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/studentResp"
+        400:
+          description: Invalid enrollment number provided
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/400Error"
+        404:
+          description: User with enrollment number not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/404Error"
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/500Error"
+    delete:
+      tags:
+        - Student
+      summary: Deletes the student by studentId
+      description: Delete the student based on given studentId
+      parameters:
+        - name: studentId
+          in: path
+          schema:
+            type: string
+            example: 01939237-2a5b-48d6-9df3-d38cc205a898
+          required: true
+      responses:
+        204:
+          description: Successfully deletes the user
+        400:
+          description: Invalid enrollment number provided
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/400Error"
+        404:
+          description: User with enrollment number not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/404Error"
+        500:
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/500Error"
+
+  /v1/document:
+    post:
+      tags:
+        - Documents
+      description: Create a new document
+      summary: Creates a new document in the database
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/documentReq"
+      responses:
+        201:
+          description: Success storing the document in database
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/documentResp"
+
+  /v1/document/{docId}:
+    get:
+      tags:
+        - Documents
+      description: Fetch the document based on document id
+      summary: Fetch the document
+      parameters:
+        - name: docId
+          in: path
+          required: true
+          schema:
+            type: string
+            example: 6913238f-d5e2-4ee6-b9f7-3e416f529fdb
+      responses:
+        200:
+          description: Successfully fetch the document
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/documentResp"
+        400:
+          description: Invalid document ID provided
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/400Error"
+        404:
+          description: Document does not exists
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/404Error"
+        500:
+          description: Server error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/500Error"
+
 
 components:
   securitySchemes:
@@ -155,13 +388,6 @@ components:
       scheme: bearer
       bearerFormat: JWT
   schemas:
-    httpError:
-      type: object
-      properties:
-        errors:
-          type: array
-          items:
-            "$ref": "#/components/schemas/error"
     dateTime:
       type: object
       properties:
@@ -172,29 +398,116 @@ components:
         timezone:
           type: string
           example: "IST"
-    error:
+    documentResp:
+      type: object
+      properties:
+        docId:
+          type: string
+          example: 6913238f-d5e2-4ee6-b9f7-3e416f529fdb
+        userId:
+          type: string
+          example: 7936f903-e5ed-4c65-a4f2-097b5007c21a
+        docName:
+          type: string
+          example: 191325_resume
+        docType:
+          type: string
+          example: pdf
+        document:
+          type: string
+          format: byte
+        createdAt:
+          type: obejct
+          $ref: "#/components/schemas/dateTime"
+        updatedAt:
+          type: obejct
+          $ref: "#/components/schemas/dateTime"
+    documentReq:
+      description: document request schema
+      type: object
+      properties:
+        userId:
+          type: string
+          example: 7936f903-e5ed-4c65-a4f2-097b5007c21a
+        docName:
+          type: string
+          example: 191325_resume
+        docType:
+          type: string
+          example: pdf
+        document:
+          type: string
+          format: byte
+      required:
+        - userId
+        - docName
+        - docType
+        - document
+    409Error:
       type: object
       properties:
         code:
           type: string
+          example: Conflict
         reason:
           type: string
+          example: entity already exists
         dateTime:
           type: object
-          "$ref": "#/components/schemas/dateTime"
+          $ref: "#/components/schemas/dateTime"
+    400Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: Bad Request
+        reason:
+          type: string
+          example: provided information is incorrect
+        dateTime:
+          type: object
+          $ref: "#/components/schemas/dateTime"
+    404Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: Not Found
+        reason:
+          type: string
+          example: the resource with id doesn't exists
+        dateTime:
+          type: object
+          $ref: "#/components/schemas/dateTime"
+    500Error:
+      type: object
+      properties:
+        code:
+          type: string
+          example: Internal Server Error
+        reason:
+          type: string
+          example: couldn't process request due to server error
+        dateTime:
+          type: object
+          $ref: "#/components/schemas/dateTime"
     usersReq:
       type: object
       properties:
         name:
           type: string
+          example: sumit kumar
         email:
           type: string
+          example: 191325@juitsolan.in
         password:
-          type: string
           description: a strong alpha-numeric password, not less than 8 characters
-        enrollmentNumber:
           type: string
+          example: sumit@kumar
+        enrollmentNumber:
           description: your organization specific enrollment number
+          type: string
+          example: 191325
       required: [name, email, password, enrollmentNumber]
     userLoginReq:
       type: object
@@ -223,7 +536,7 @@ components:
           example: student
         createdAt:
           type: object
-          "$ref": "#/components/schemas/dateTime"
+          $ref: "#/components/schemas/dateTime"
         updatedAt:
           type: object
           $ref: "#/components/schemas/dateTime"
@@ -233,6 +546,77 @@ components:
         name:
           type: string
           example: sumit kumar
+        degree:
+          type: string
+          example: BTech
+        department:
+          type: string
+          example: CSE
+        major:
+          type: string
+          example: Data-Science
+        graduationYear:
+          type: Integer
+          example: 2023
+        contactInfo:
+          type: string
+          example: 9898989898
+        educationalBackground:
+          type: string
+          example: "10th: SEM CBSE SCHOOL, 10.0CGPA\n12th: SEM CBSE SCHOOL, 68%"
+        skills:
+          type: string
+          example: "Golang, C++, C, Problem-solving, Kubernetes, Docker, HTTP, Go-Microservices"
+        docId:
+          type: string
+          example: 16a40f10-549e-4904-b95b-d229ed296d8b
+      required:
+        - name
+        - degree
+        - department
+        - major
+        - graduationYear
+        - contactInfo
+    studentResp:
+      type: object
+      properties:
+        id:
+          type: string
+          example: 16a40f10-549e-4904-b95b-d229ed296d8b
+        userId:
+          type: string
+          example: d22ef340-e9ff-4f69-a9fb-c47479a2ad30
+        name:
+          type: string
+          example: sumit kumar
+        degree:
+          type: string
+          example: BTech
+        department:
+          type: string
+          example: CSE
+        major:
+          type: string
+          example: Data-Science
+        graduationYear:
+          type: Integer
+          example: 2023
+        contactInfo:
+          type: string
+          example: 9898989898
+        educationalBackground:
+          type: string
+          example: "10th: SEM CBSE SCHOOL, 10.0CGPA\n12th: SEM CBSE SCHOOL, 68%"
+        skills:
+          type: string
+          example: "Golang, C++, C, Problem-solving, Kubernetes, Docker, HTTP, Go-Microservices"
+        docId:
+          type: string
+          example: 16a40f10-549e-4904-b95b-d229ed296d8b
+        createdAt:
+          $ref: "#/components/schemas/dateTime"
+        updatedAt:
+          $ref: "#/components/schemas/dateTime"
 
 security:
   - bearerAuth: []
