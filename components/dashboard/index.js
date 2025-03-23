@@ -19,9 +19,9 @@ function DashBoard() {
               const { data, error } = FetchData(userName, plateForm[index]);
               if (error)
                 return (
-                  <h1>{`${error} check userName : {${userName}} or try after someTime`}</h1>
+                  <h1 key={error}>{`${error} check userName : {${userName}} or try after someTime`}</h1>
                 );
-              if (!data) return <Spinner></Spinner>;
+              if (!data) return <Spinner key={plateForm[index]}></Spinner>;
               let solved_status;
               switch (index) {
                 case 0:
@@ -32,7 +32,6 @@ function DashBoard() {
                   solved_status =
                     "Rank -> " + data.rank + " Score -> " + data.score;
                   break;
-                  s;
                 case 2:
                   solved_status = "Rank ->" + data.rank + " Rating-> " + data.rating;
                   break;
@@ -43,6 +42,7 @@ function DashBoard() {
               }
               return (
                 <Card
+                  key={plateForm[index]}
                   plat={plateForm[index]}
                   userName={userName}
                   solved={solved_status}

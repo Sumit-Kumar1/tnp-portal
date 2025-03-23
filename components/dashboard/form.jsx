@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 export default FormData;
 
 function FormData() {
-  const [user, setUser] = useState(null);
+  const [_, setUser] = useState(null);
   const router = useRouter();
 
   // fetch user and set default form values if in edit mode
@@ -17,7 +17,7 @@ function FormData() {
   function onSubmit(e) {
     e.preventDefault();
     let accounts = [];
-    for (const i = 0; i < 4; ++i) {
+    for (let i = 0; i < 4; ++i) {
       accounts.push(e.target[i].value);
     }
     userService.update(userService.userValue?.ErNo, { accounts });
@@ -30,14 +30,18 @@ function FormData() {
       onSubmit={onSubmit}
       className="flex flex-col border-2 rounded px-3 py-2 w-[1/2] md:w-[1/3]"
     >
-      <label>Enter LeetCode userName</label>
-      <input type="text" className="border-2 m-2 px-3"></input>
-      <label>Enter InterviewBit userName</label>
-      <input type="text" className="border-2 m-2 px-3"></input>
-      <label>Enter CodeForces userName</label>
-      <input type="text" className="border-2 m-2 px-3"></input>
-      <label>Enter SPOJ userName</label>
-      <input type="text" className="border-2 m-2 px-3"></input>
+      <label>
+        Enter LeetCode userName<input type="text" className="border-2 m-2 px-3"></input>
+      </label>
+      <label>
+        Enter InterviewBit userName<input type="text" className="border-2 m-2 px-3"></input>
+      </label>
+      <label>
+        Enter CodeForces userName<input type="text" className="border-2 m-2 px-3"></input>
+      </label>
+      <label>
+        Enter SPOJ userName<input type="text" className="border-2 m-2 px-3"></input>
+      </label>
       <button type="submit" className="btn">
         submit
       </button>
