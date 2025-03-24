@@ -8,14 +8,16 @@ function JobCard({ id, details }) {
   return (
     <div className="p-3 border-2 rounded-xl border-indigo-500 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-300 ...">
       <div className="px-6 py-4">
-        <NextLink href={details.website}  passHref>
-          <a className="text-xl font-semibold hover:text-blue-400 hover:underline">
-            <Image
-              src={jobSvg}
-              width={20}
-              height={20}
-              alt="job_image"
-            ></Image> {details.role}</a>
+        <NextLink
+          href={details.website}
+          passHref
+          className="text-xl font-semibold hover:text-blue-400 hover:underline">
+          <Image
+            src={jobSvg}
+            width={20}
+            height={20}
+            alt="job_image"
+          ></Image> {details.role}
         </NextLink>
         <p >{details.company}</p>
         <p className="text-base text-gray-700 p-2">
@@ -44,9 +46,12 @@ function JobCard({ id, details }) {
           End : {details.extras.endDate}
         </span>
       </div>
-
-      <NextLink href={details.website} passHref>
-        <a className="btn bg-green-500 hover:bg-green-700" target="_blank">Apply</a>
+      <NextLink
+        href={details.website}
+        passHref
+        className="btn bg-green-500 hover:bg-green-700"
+        target="_blank">
+        Apply
       </NextLink>
     </div>
   );
