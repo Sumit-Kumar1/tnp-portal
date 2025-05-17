@@ -1,8 +1,9 @@
 package models
 
 import (
-	"github.com/google/uuid"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 type JobPosting struct {
@@ -12,7 +13,7 @@ type JobPosting struct {
 	Location       string
 	Qualifications string
 	Salary         int
-	docID          *uuid.UUID
+	DocID          *uuid.UUID
 	CreatedAt      time.Time
 	UpdatedAt      time.Time
 }

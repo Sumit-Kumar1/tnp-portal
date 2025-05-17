@@ -1,8 +1,9 @@
 package models
 
 import (
-	"github.com/google/uuid"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 type StudentData struct {
@@ -16,12 +17,12 @@ type StudentData struct {
 	ContactInfo *string
 	Education   []string
 	Skills      []string
-	docID       *uuid.UUID
+	DocID       *uuid.UUID
 	CreatedAt   *time.Time
 	UpdatedAt   *time.Time
 }
 
-type StudentReq struct {
+type StudentRequest struct {
 	Name       string `json:"name"`
 	Degree     string `json:"degree"`
 	Department string `json:"department"`
@@ -30,10 +31,10 @@ type StudentReq struct {
 	Contact    string `json:"contactInfo"`
 	Education  string `json:"educationBackground"`
 	Skill      string `json:"skills"`
-	DocId      string `json:"docId"`
+	DocID      string `json:"docId"`
 }
 
-type StudentResp struct {
+type StudentResponse struct {
 	ID         *string   `json:"id,omitempty"`
 	UserID     *string   `json:"userId,omitempty"`
 	Name       *string   `json:"name,omitempty"`

@@ -1,8 +1,9 @@
 package models
 
 import (
-	"github.com/google/uuid"
 	"time"
+
+	"github.com/google/uuid"
 )
 
 type DocumentData struct {
@@ -14,14 +15,14 @@ type DocumentData struct {
 	UpdatedAt *time.Time
 }
 
-type DocumentReq struct {
+type DocumentRequest struct {
 	UserID   string `json:"userId"`
 	DocName  string `json:"docName"`
 	DocType  string `json:"docType"`
 	Document []byte `json:"document"`
 }
 
-type DocumentResp struct {
+type DocumentResponse struct {
 	DocID     *string   `json:"docId,omitempty"`
 	UserID    *string   `json:"userId,omitempty"`
 	DocName   *string   `json:"docName,omitempty"`

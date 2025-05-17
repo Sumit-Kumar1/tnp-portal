@@ -1,33 +1,62 @@
 package models
 
 import (
-	"github.com/google/uuid"
 	"time"
+
+	"github.com/google/uuid"
 )
 
+// UserData represents the user data in the database
 type UserData struct {
-	UserID       *uuid.UUID
-	EnrollmentID string
-	Name         string
-	Email        string
-	PasswordHash []byte
-	Role         string
-	CreatedAt    time.Time
-	UpdatedAt    time.Time
+	UserID       uuid.UUID `json:"user_id" db:"id"`
+	EnrollmentID string    `json:"enrollment_id" db:"enrollment_id"`
+	Name         string    `json:"name" db:"name"`
+	Email        string    `json:"email" db:"email"`
+	PasswordHash string    `json:"-" db:"password_hash"`
+	Role         string    `json:"role" db:"role"`
+	CreatedAt    time.Time `json:"created_at" db:"created_at"`
+	UpdatedAt    time.Time `json:"updated_at" db:"updated_at"`
 }
 
-type UserReq struct {
-	Name             *string `json:"name,omitempty"`
-	Email            *string `json:"email,omitempty"`
-	Password         *string `json:"password,omitempty"`
-	EnrollmentNumber *string `json:"enrollmentNumber,omitempty"`
+// UserRequest represents the user request data
+type UserRequest struct {
+	EnrollmentID string `json:"enrollment_id" binding:"required"`
+	Name         string `json:"name" binding:"required"`
+	Email        string `json:"email" binding:"required,email"`
+	Password     string `json:"password" binding:"required,min=8"`
+	Role         string `json:"role" binding:"required,oneof=student admin company"`
 }
 
-type UserResp struct {
-	UserID    *string `json:"userId,omitempty"`
-	Name      *string `json:"name,omitempty"`
-	Email     *string `json:"email,omitempty"`
-	Role      *string `json:"role,omitempty"`
-	CreatedAt *string `json:"createdAt,omitempty"`
-	UpdatedAt *string `json:"updatedAt,omitempty"`
+// UserResponse represents the user response data
+type UserResponse struct {
+	UserID       uuid.UUID `json:"user_id"`
+	EnrollmentID string    `json:"enrollment_id"`
+	Name         string    `json:"name"`
+	Email        string    `json:"email"`
+	Role         string    `json:"role"`
+	Token        string    `json:"token,omitempty"`
+}
+
+// LoginRequest represents the login request data
+type LoginRequest struct {
+	Email    string `json:"email" binding:"required,email"`
+	Password string `json:"password" binding:"required"`
+}
+
+// LoginResponse represents the response format for login
+type LoginResponse struct {
+	Token string       `json:"token"`
+	User  UserResponse `json:"user"`
+}
+
+// ConvertToUserResp converts UserData to UserResponse
+func ConvertToUserResp(user *UserData) *UserResponse {
+	return &UserResponse{
+		UserID:       user.UserID,
+		EnrollmentID: user.EnrollmentID,
+		Name:         user.Name,
+		Email:        user.Email,
+		Role:         user.Role,
+		Token:        user.PasswordHash,
+	}
 }
