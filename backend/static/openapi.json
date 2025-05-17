@@ -605,6 +605,535 @@
           }
         }
       }
+    },
+    "/v1/documents": {
+      "get": {
+        "tags": ["Documents"],
+        "summary": "List documents with pagination",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "userId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of documents",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "documents": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/documentResp"
+                      }
+                    },
+                    "total": {
+                      "type": "integer"
+                    },
+                    "page": {
+                      "type": "integer"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/jobs": {
+      "get": {
+        "tags": ["Jobs"],
+        "summary": "Get job listings",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 1
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "schema": {
+              "type": "integer",
+              "default": 10
+            }
+          },
+          {
+            "name": "company",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "role",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "location",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "List of jobs",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "jobs": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/jobResp"
+                      }
+                    },
+                    "total": {
+                      "type": "integer"
+                    },
+                    "page": {
+                      "type": "integer"
+                    },
+                    "limit": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/jobs/{jobId}": {
+      "get": {
+        "tags": ["Jobs"],
+        "summary": "Get job details",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Job details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/jobResp"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/jobs/{jobId}/apply": {
+      "post": {
+        "tags": ["Jobs"],
+        "summary": "Apply for a job",
+        "parameters": [
+          {
+            "name": "jobId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/jobApplicationReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Application submitted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/jobApplicationResp"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/companies/profile": {
+      "put": {
+        "tags": ["Companies"],
+        "summary": "Create or update company profile",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/companyProfileReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Company profile updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/companyProfileResp"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/companies/jobs": {
+      "post": {
+        "tags": ["Companies"],
+        "summary": "Post a new job opening",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/jobPostingReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Job posted successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/jobPostingResp"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/students/applications": {
+      "get": {
+        "tags": ["Applications"],
+        "summary": "Get student's applications",
+        "responses": {
+          "200": {
+            "description": "List of applications",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "applications": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/applicationResp"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/companies/applications": {
+      "get": {
+        "tags": ["Applications"],
+        "summary": "Get company's applications",
+        "responses": {
+          "200": {
+            "description": "List of applications",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "applications": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/applicationResp"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/applications/{applicationId}": {
+      "patch": {
+        "tags": ["Applications"],
+        "summary": "Update application status",
+        "parameters": [
+          {
+            "name": "applicationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/applicationStatusUpdateReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Application status updated successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/applicationResp"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/interviews": {
+      "post": {
+        "tags": ["Interviews"],
+        "summary": "Schedule an interview",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/interviewScheduleReq"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Interview scheduled successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/interviewResp"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/students/interviews": {
+      "get": {
+        "tags": ["Interviews"],
+        "summary": "Get student's interviews",
+        "responses": {
+          "200": {
+            "description": "List of interviews",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "interviews": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/interviewResp"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/companies/interviews": {
+      "get": {
+        "tags": ["Interviews"],
+        "summary": "Get company's interviews",
+        "responses": {
+          "200": {
+            "description": "List of interviews",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "interviews": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/interviewResp"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/notifications": {
+      "get": {
+        "tags": ["Notifications"],
+        "summary": "Get notifications",
+        "responses": {
+          "200": {
+            "description": "List of notifications",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "notifications": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/notificationResp"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/notifications/{notificationId}": {
+      "patch": {
+        "tags": ["Notifications"],
+        "summary": "Mark notification as read",
+        "parameters": [
+          {
+            "name": "notificationId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Notification marked as read",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/notificationResp"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/analytics/placements": {
+      "get": {
+        "tags": ["Analytics"],
+        "summary": "Get placement statistics",
+        "responses": {
+          "200": {
+            "description": "Placement statistics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/placementStatsResp"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/analytics/students/performance": {
+      "get": {
+        "tags": ["Analytics"],
+        "summary": "Get student performance analytics",
+        "responses": {
+          "200": {
+            "description": "Student performance analytics",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/studentPerformanceResp"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/v1/analytics/companies/trends": {
+      "get": {
+        "tags": ["Analytics"],
+        "summary": "Get company recruitment trends",
+        "responses": {
+          "200": {
+            "description": "Company recruitment trends",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/companyTrendsResp"
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -664,32 +1193,27 @@
         }
       },
       "documentReq": {
-        "description": "document request schema",
         "type": "object",
         "properties": {
           "userId": {
             "type": "string",
-            "example": "7936f903-e5ed-4c65-a4f2-097b5007c21a"
+            "format": "uuid"
           },
           "docName": {
             "type": "string",
-            "example": "191325_resume"
+            "maxLength": 255
           },
           "docType": {
             "type": "string",
-            "example": "pdf"
+            "enum": ["pdf", "doc", "docx", "txt"]
           },
           "document": {
             "type": "string",
-            "format": "byte"
+            "format": "base64",
+            "maxLength": 10485760
           }
         },
-        "required": [
-          "userId",
-          "docName",
-          "docType",
-          "document"
-        ]
+        "required": ["userId", "docName", "docType", "document"]
       },
       "409Error": {
         "type": "object",
@@ -936,6 +1460,444 @@
           },
           "updatedAt": {
             "$ref": "#/components/schemas/dateTime"
+          }
+        }
+      },
+      "jobResp": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "requirements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "location": {
+            "type": "string"
+          },
+          "salaryRange": {
+            "type": "object",
+            "properties": {
+              "min": {
+                "type": "number"
+              },
+              "max": {
+                "type": "number"
+              }
+            }
+          },
+          "deadline": {
+            "type": "string",
+            "format": "date"
+          },
+          "companyId": {
+            "type": "string"
+          },
+          "createdAt": {
+            "$ref": "#/components/schemas/dateTime"
+          },
+          "updatedAt": {
+            "$ref": "#/components/schemas/dateTime"
+          }
+        }
+      },
+      "jobApplicationReq": {
+        "type": "object",
+        "properties": {
+          "resumeUrl": {
+            "type": "string"
+          },
+          "coverLetter": {
+            "type": "string"
+          }
+        },
+        "required": ["resumeUrl"]
+      },
+      "jobApplicationResp": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "jobId": {
+            "type": "string"
+          },
+          "studentId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["PENDING", "ACCEPTED", "REJECTED", "INTERVIEW_SCHEDULED", "OFFERED"]
+          },
+          "createdAt": {
+            "$ref": "#/components/schemas/dateTime"
+          },
+          "updatedAt": {
+            "$ref": "#/components/schemas/dateTime"
+          }
+        }
+      },
+      "companyProfileReq": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "website": {
+            "type": "string"
+          },
+          "industry": {
+            "type": "string"
+          },
+          "size": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          }
+        },
+        "required": ["name", "description", "industry", "location"]
+      },
+      "companyProfileResp": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "website": {
+            "type": "string"
+          },
+          "industry": {
+            "type": "string"
+          },
+          "size": {
+            "type": "string"
+          },
+          "location": {
+            "type": "string"
+          },
+          "createdAt": {
+            "$ref": "#/components/schemas/dateTime"
+          },
+          "updatedAt": {
+            "$ref": "#/components/schemas/dateTime"
+          }
+        }
+      },
+      "jobPostingReq": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "requirements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "location": {
+            "type": "string"
+          },
+          "salaryRange": {
+            "type": "object",
+            "properties": {
+              "min": {
+                "type": "number"
+              },
+              "max": {
+                "type": "number"
+              }
+            }
+          },
+          "deadline": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "required": ["title", "description", "requirements", "location", "deadline"]
+      },
+      "jobPostingResp": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "requirements": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "location": {
+            "type": "string"
+          },
+          "salaryRange": {
+            "type": "object",
+            "properties": {
+              "min": {
+                "type": "number"
+              },
+              "max": {
+                "type": "number"
+              }
+            }
+          },
+          "deadline": {
+            "type": "string",
+            "format": "date"
+          },
+          "companyId": {
+            "type": "string"
+          },
+          "createdAt": {
+            "$ref": "#/components/schemas/dateTime"
+          },
+          "updatedAt": {
+            "$ref": "#/components/schemas/dateTime"
+          }
+        }
+      },
+      "applicationResp": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "jobId": {
+            "type": "string"
+          },
+          "studentId": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["PENDING", "ACCEPTED", "REJECTED", "INTERVIEW_SCHEDULED", "OFFERED"]
+          },
+          "createdAt": {
+            "$ref": "#/components/schemas/dateTime"
+          },
+          "updatedAt": {
+            "$ref": "#/components/schemas/dateTime"
+          }
+        }
+      },
+      "applicationStatusUpdateReq": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": ["PENDING", "ACCEPTED", "REJECTED", "INTERVIEW_SCHEDULED", "OFFERED"]
+          }
+        },
+        "required": ["status"]
+      },
+      "interviewScheduleReq": {
+        "type": "object",
+        "properties": {
+          "applicationId": {
+            "type": "string"
+          },
+          "dateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["ONLINE", "OFFLINE"]
+          },
+          "location": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          }
+        },
+        "required": ["applicationId", "dateTime", "type"]
+      },
+      "interviewResp": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "applicationId": {
+            "type": "string"
+          },
+          "dateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["ONLINE", "OFFLINE"]
+          },
+          "location": {
+            "type": "string"
+          },
+          "notes": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["SCHEDULED", "COMPLETED", "CANCELLED"]
+          },
+          "createdAt": {
+            "$ref": "#/components/schemas/dateTime"
+          },
+          "updatedAt": {
+            "$ref": "#/components/schemas/dateTime"
+          }
+        }
+      },
+      "notificationResp": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string",
+            "enum": ["JOB", "INTERVIEW", "APPLICATION", "SYSTEM"]
+          },
+          "isRead": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "$ref": "#/components/schemas/dateTime"
+          }
+        }
+      },
+      "placementStatsResp": {
+        "type": "object",
+        "properties": {
+          "totalStudents": {
+            "type": "integer"
+          },
+          "placedStudents": {
+            "type": "integer"
+          },
+          "placementPercentage": {
+            "type": "number"
+          },
+          "topCompanies": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "companyId": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "count": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "departmentWiseStats": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "total": {
+                  "type": "integer"
+                },
+                "placed": {
+                  "type": "integer"
+                },
+                "percentage": {
+                  "type": "number"
+                }
+              }
+            }
+          }
+        }
+      },
+      "studentPerformanceResp": {
+        "type": "object",
+        "properties": {
+          "totalApplications": {
+            "type": "integer"
+          },
+          "interviewsAttended": {
+            "type": "integer"
+          },
+          "offersReceived": {
+            "type": "integer"
+          },
+          "successRate": {
+            "type": "number"
+          },
+          "skillDistribution": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer"
+            }
+          }
+        }
+      },
+      "companyTrendsResp": {
+        "type": "object",
+        "properties": {
+          "totalJobsPosted": {
+            "type": "integer"
+          },
+          "applicationsReceived": {
+            "type": "integer"
+          },
+          "hiringRate": {
+            "type": "number"
+          },
+          "departmentPreferences": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer"
+            }
+          },
+          "skillDemand": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "integer"
+            }
           }
         }
       }
