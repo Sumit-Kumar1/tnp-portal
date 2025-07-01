@@ -1,7 +1,7 @@
 package documentstore
 
 import (
-	"tnp-backend/internal/models"
+	"tnp-service/internal/models"
 
 	"gofr.dev/pkg/gofr"
 )

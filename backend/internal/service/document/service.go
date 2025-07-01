@@ -22,7 +22,7 @@ func New(ds DocStorer) *DocService {
 	}
 }
 
-func (ds *DocService) CreateDoc(ctx *gofr.Context, data *models.DocumentReq) error {
+func (ds *DocService) CreateDoc(ctx *gofr.Context, data *models.DocumentRequest) error {
 	return nil
 }
 

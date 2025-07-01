@@ -1,7 +1,7 @@
 package main
 
 import (
-	"tnp-backend/cmd"
+	"tnp-service/cmd"
 )
 
 func main() {

@@ -1,7 +1,7 @@
 package documenthttp
 
 import (
-	"tnp-backend/internal/models"
+	"tnp-service/internal/models"
 
 	"github.com/google/uuid"
 	"gofr.dev/pkg/gofr"
