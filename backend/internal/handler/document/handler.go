@@ -1,10 +1,9 @@
-package documenthttp
+package document
 
 import (
-	"tnp-service/internal/models"
-
 	"github.com/google/uuid"
 	"gofr.dev/pkg/gofr"
+	"tnp-service/internal/models"
 )
 
 type DocServicer interface {
@@ -12,20 +11,25 @@ type DocServicer interface {
 	GetDoc(ctx *gofr.Context, docId *uuid.UUID) (*models.DocumentData, error)
 }
 
-type DocHandler struct {
+type Handler struct {
 	Service DocServicer
 }
 
-func New(ds DocServicer) *DocHandler {
-	return &DocHandler{
+func New(ds DocServicer) *Handler {
+	return &Handler{
 		Service: ds,
 	}
 }
 
-func (dh *DocHandler) CreateDoc(ctx *gofr.Context) (any, error) {
+// Document handlers
+func (h *Handler) CreateDocument(ctx *gofr.Context) (any, error) {
 	return nil, nil
 }
 
-func (dh *DocHandler) GetDoc(ctx *gofr.Context) (any, error) {
+func (h *Handler) DeleteDocument(ctx *gofr.Context) (any, error) {
+	return nil, nil
+}
+
+func (h *Handler) GetDocument(ctx *gofr.Context) (any, error) {
 	return nil, nil
 }

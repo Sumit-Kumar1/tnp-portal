@@ -1,9 +1,8 @@
 package documentstore
 
 import (
-	"tnp-service/internal/models"
-
 	"gofr.dev/pkg/gofr"
+	"tnp-service/internal/models"
 )
 
 type DocStore struct {

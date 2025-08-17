@@ -1,5 +1,8 @@
 package service
 
+type Storer interface {
+}
+
 type Service struct {
 	store Storer
 }

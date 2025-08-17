@@ -1,10 +1,9 @@
 package documentsvc
 
 import (
-	"tnp-service/internal/models"
-
 	"github.com/google/uuid"
 	"gofr.dev/pkg/gofr"
+	"tnp-service/internal/models"
 )
 
 type DocStorer interface {
